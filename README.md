@@ -1,5 +1,5 @@
 # UGA_Mod
-Source code of the website for the Bc.S. BIO504 course (3rd year) available at the University Grenoble Alpes\
+Source code of the website for the Bc.S. [BIO504 course](https://formations.univ-grenoble-alpes.fr/fr/catalogue-2021/licence-XA/licence-sciences-de-la-vie-IAIB1MEI/parcours-biologie-2e-et-3e-annee-JB6ALBKO/ue-modelisation-en-biologie-bio504-IG0LR11M.html) ([3rd year](https://formations.univ-grenoble-alpes.fr/fr/catalogue-2021/licence-XA/licence-sciences-de-la-vie-IAIB1MEI.html)) available at the University Grenoble Alpes\
 (Cours en Français)
 
 <p xmlns:cc="http://creativecommons.org/ns#">
@@ -8,15 +8,18 @@ Ces pages ont été créées par <span property="cc:attributionName">Thierry Gau
 
 # Installation
 
-1. Choisissez un emplacement adéquat sur votre machine et tapez les commandes suivantes:
+1. Choisissez un emplacement adéquat sur votre machine (ex: `~/Documents`)
+2. Tapez les commandes suivantes:
+
 
 ```
+cd ~/Documents
 git clone https://github.com/ThiGre38/UGA_Mod.git
 cd UGA_Mod
 ```
 
-2. Ouvrez le fichier `index.html`
-3. Naviguez sur le site
+3. Ouvrez le fichier `index.html`
+4. Naviguez sur le site
 
 # Usage
 
@@ -25,11 +28,14 @@ Le contenu du dossier UGA_Mod peut être utilisé localement ou placé en totali
 # Suppression
 
 1.  Placez le dossier dans sa totalité à la corbeille en utilisant votre gestionnaire de fichiers
-2.  Utilisez les commandes suivantes:
+2.  Utilisez les commandes suivantes:\
+(Si le clone a été réalisé dans le dossier `Documents`, sinon **adaptez** !)
 
 ```
-cd UGA_mod
+cd ~/Documents/UGA_mod # pour être certain de se placer dans le bon dossier
 rm -Rf *
+cd ..
+rm UGA_mod
 ```
 
 # Licence
