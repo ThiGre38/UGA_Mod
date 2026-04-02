@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Thierry Gautier">
+<meta name="dcterms.date" content="2025-10-12">
+
+<title>BIO504 - TP 3 – BIO504: TP de Bioinformatique</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-a26f3680889bc016604be2101547878f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">BIO504: TP de Bioinformatique</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./quarto_syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cours" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Cours</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-cours">    
+        <li>
+    <a class="dropdown-item" href="./pdf/25_BIO504_CM1.pdf">
+ <span class="dropdown-text">CM1: Les Bases de données</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./pdf/25_BIO504_CM2.pdf">
+ <span class="dropdown-text">CM2: Les alignements principes et usages</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./pdf/25_BIO504_CM3.pdf">
+ <span class="dropdown-text">CM3: Les Matrices de substitution</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./pdf/25_BIO504_CM4.pdf">
+ <span class="dropdown-text">CM4: PDB et Structures 3D</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./pdf/25_BIO504_CM5.pdf">
+ <span class="dropdown-text">CM5: Les Matrices et BLAST niveau 2</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-travaux-pratiques" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Travaux Pratiques</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-travaux-pratiques">    
+        <li>
+    <a class="dropdown-item" href="./quarto_bio504-TP1.html">
+ <span class="dropdown-text">TP1: Bases de données</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./quarto_bio504-TP2b.html">
+ <span class="dropdown-text">TP2: Comparaison et Alignements</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./quarto_bio504-TP3b.html">
+ <span class="dropdown-text">TP3: Consensus et Blast</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./quarto_bio504-TP4b.html">
+ <span class="dropdown-text">TP4: Modélisation 3D</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-docs-annexes" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Docs Annexes</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-docs-annexes">    
+        <li>
+    <a class="dropdown-item" href="./quarto_bio504-HB.html">
+ <span class="dropdown-text">A1: Les hémoglobines</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./quarto_FASTA.html">
+ <span class="dropdown-text">A2: Enregistrement Fasta</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./quarto_fichiers.html">
+ <span class="dropdown-text">A3: Les Séquences HB</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./504_images/base-r.jpg">
+ <span class="dropdown-text">A4: Aide pour le code R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./quarto_proteines.html">
+ <span class="dropdown-text">A5: Une famille de Protéines</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./quarto_videos.html">
+ <span class="dropdown-text">A6: Vidéos 2020 (Covid)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-réponses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Réponses</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-réponses">    
+        <li>
+    <a class="dropdown-item" href="./q_aide1.html">
+ <span class="dropdown-text">Réponses du TP1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./q_aide2.html">
+ <span class="dropdown-text">Réponses du TP2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./q_aide3.html">
+ <span class="dropdown-text">Réponses du TP3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./q_aide4.html">
+ <span class="dropdown-text">Réponses du TP4</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">Table des matières</h2>
+   
+  <ul>
+  <li><a href="#alignement-multiples-recherche-dune-séquence-consensus-et-dans-les-bases-de-données" id="toc-alignement-multiples-recherche-dune-séquence-consensus-et-dans-les-bases-de-données" class="nav-link active" data-scroll-target="#alignement-multiples-recherche-dune-séquence-consensus-et-dans-les-bases-de-données"><span class="header-section-number">1</span> Alignement multiples, recherche d’une séquence consensus et dans les bases de données</a>
+  <ul class="collapse">
+  <li><a href="#objectifs-du-tp" id="toc-objectifs-du-tp" class="nav-link" data-scroll-target="#objectifs-du-tp"><span class="header-section-number">1.1</span> Objectifs du TP</a></li>
+  <li><a href="#alignement-de-séquences-multiples" id="toc-alignement-de-séquences-multiples" class="nav-link" data-scroll-target="#alignement-de-séquences-multiples"><span class="header-section-number">1.2</span> Alignement de séquences multiples</a></li>
+  <li><a href="#étude-phylogénique-analyse-de-la-famille-multigénique-de-lhémoglobine" id="toc-étude-phylogénique-analyse-de-la-famille-multigénique-de-lhémoglobine" class="nav-link" data-scroll-target="#étude-phylogénique-analyse-de-la-famille-multigénique-de-lhémoglobine"><span class="header-section-number">1.3</span> Étude phylogénique : Analyse de la famille multigénique de l’hémoglobine</a></li>
+  <li><a href="#définition-dune-séquence-consensus" id="toc-définition-dune-séquence-consensus" class="nav-link" data-scroll-target="#définition-dune-séquence-consensus"><span class="header-section-number">1.4</span> Définition d’une séquence consensus</a>
+  <ul class="collapse">
+  <li><a href="#obtention-des-séquences-introniques" id="toc-obtention-des-séquences-introniques" class="nav-link" data-scroll-target="#obtention-des-séquences-introniques"><span class="header-section-number">1.4.1</span> Obtention des séquences introniques</a></li>
+  <li><a href="#développement-de-lagorithme" id="toc-développement-de-lagorithme" class="nav-link" data-scroll-target="#développement-de-lagorithme"><span class="header-section-number">1.4.2</span> Développement de l’agorithme</a></li>
+  <li><a href="#transcription-sous-r-et-vérification-dans-clustal" id="toc-transcription-sous-r-et-vérification-dans-clustal" class="nav-link" data-scroll-target="#transcription-sous-r-et-vérification-dans-clustal"><span class="header-section-number">1.4.3</span> Transcription sous R et vérification dans <em>Clustal</em></a></li>
+  <li><a href="#création-dune-séquence-logo" id="toc-création-dune-séquence-logo" class="nav-link" data-scroll-target="#création-dune-séquence-logo"><span class="header-section-number">1.4.4</span> Création d’une séquence logo</a></li>
+  </ul></li>
+  <li><a href="#recherche-de-similitudes-dans-les-bases-de-données" id="toc-recherche-de-similitudes-dans-les-bases-de-données" class="nav-link" data-scroll-target="#recherche-de-similitudes-dans-les-bases-de-données"><span class="header-section-number">1.5</span> Recherche de similitudes dans les bases de données</a>
+  <ul class="collapse">
+  <li><a href="#recherche-dans-la-base-de-données-swiss-prot" id="toc-recherche-dans-la-base-de-données-swiss-prot" class="nav-link" data-scroll-target="#recherche-dans-la-base-de-données-swiss-prot"><span class="header-section-number">1.5.1</span> Recherche dans la base de données <em>Swiss-Prot</em></a></li>
+  <li><a href="#recherche-dans-la-base-de-donnée-refseq" id="toc-recherche-dans-la-base-de-donnée-refseq" class="nav-link" data-scroll-target="#recherche-dans-la-base-de-donnée-refseq"><span class="header-section-number">1.5.2</span> Recherche dans la base de donnée RefSeq</a></li>
+  </ul></li>
+  <li><a href="#sauvegarde-de-votre-travail" id="toc-sauvegarde-de-votre-travail" class="nav-link" data-scroll-target="#sauvegarde-de-votre-travail"><span class="header-section-number">1.6</span> Sauvegarde de votre travail</a></li>
+  <li><a href="#pour-aller-plus-loin-travail-personnel" id="toc-pour-aller-plus-loin-travail-personnel" class="nav-link" data-scroll-target="#pour-aller-plus-loin-travail-personnel"><span class="header-section-number">1.7</span> Pour aller plus loin (Travail personnel)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">BIO504 - TP 3</h1>
+<p class="subtitle lead">Alignements multiples, recherche d’une séquence consensus et dans les bases de données</p>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Thierry Gautier </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            <a href="https://www.univ-grenoble-alpes.fr/">
+            Université Grenoble Alpes
+            </a>
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 12, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+<div>
+  <div class="abstract">
+    <div class="block-title">Synopsis :</div>
+    Comparer des séquences par alignement multiple, définir un algorithme de comparaison, identifier des consensus et utiliser BLAST
+  </div>
+</div>
+
+
+</header>
+
+
+
+<meta name="description" content="bioinformatics practical L3 level, University Grenoble Alpes">
+<meta name="keywords" content="UGA,Bioinformatics,course,practical,Licence">
+<meta name="author" content="Thierry GAUTIER">
+<meta name="generator" content="Jupyter-Markdown-quarto">
+
+<style>
+a{
+ text-decoration-line:none;
+}
+</style>
+<section id="alignement-multiples-recherche-dune-séquence-consensus-et-dans-les-bases-de-données" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Alignement multiples, recherche d’une séquence consensus et dans les bases de données</h1>
+<section id="objectifs-du-tp" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="objectifs-du-tp"><span class="header-section-number">1.1</span> Objectifs du TP</h2>
+<ol start="2" type="1">
+<li>Réaliser des alignements multiples</li>
+<li>Définir un algorithme de comparaison de positions pour identifier une séquence consensus</li>
+<li>Coder l’algorithme</li>
+<li>Définir une séquence logo</li>
+<li>Utiliser l’outil de recherche de similitudes dans les bases de données (BLAST)</li>
+<li>Notions de phylogénétique</li>
+</ol>
+</section>
+<section id="alignement-de-séquences-multiples" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="alignement-de-séquences-multiples"><span class="header-section-number">1.2</span> Alignement de séquences multiples</h2>
+<p>Afin de comparer toutes les séquences d’hémoglobines de la famille <span class="math inline">\(\beta\)</span>, nous allons réaliser un alignement multiple des 5 séquences (HBB, HBD, HBE1, HBG2, HBG2). L’alignement de plus de deux séquences est normalement obtenu avec l’outil <em>Clustal</em>. On dénombre plusieurs versions de ce programme (X, W, <em><span class="math inline">\(\Omega\)</span></em> [<em>Omega</em>]).</p>
+<p>Les versions <em>X</em> et <em>W</em>, longtemps utilisées ne sont plus mises à jour et ont été remplacées par la version <em><span class="math inline">\(\Omega\)</span></em>.</p>
+<p>Lancez <em><a href="https://www.ebi.ac.uk/jdispatcher/msa/clustalo">Clustal <span class="math inline">\(\Omega\)</span></a></em></p>
+<p><img src="504_images/24omega.png" class="img-fluid"></p>
+<ul>
+<li><p>Vous devez créer un <strong>fichier FASTA</strong> de la totalité des séquences à comparer</p>
+<ul>
+<li>Comment procédez-vous ?</li>
+<li>Quel type de séquences choisissez-vous ?</li>
+<li>Comment transférez-vous les données à <em>Clustal <span class="math inline">\(\Omega\)</span></em> ?</li>
+</ul></li>
+<li><p>Démarrez le calcul en cliquant sur <em>Submit</em> et patientez le temps que le résultat s’affiche</p>
+<ul>
+<li>Qu’affiche le résultat ?</li>
+<li>Cliquez le bouton <em>Alignment with colours (Show)</em>, quelle est la signification de cet affichage ?</li>
+</ul></li>
+<li><p>Cliquez sur l’onglet <em>Result Files</em> et analysez chacun des liens affichés</p>
+<ul>
+<li>Que signifient-ils ?</li>
+<li>Que pouvez-vous en déduire ?</li>
+<li>Que retrouvez-vous dans le lien <em>Percent Identity Matrix</em> ?</li>
+<li>Retrouvez-vous les informations calculées lors du <a href="quarto_bio504-TP2.html">TP2</a> ?</li>
+</ul></li>
+<li><p>Comparez maintenant toutes les hémoglobines entre elles (<span class="math inline">\(\alpha\)</span> et <span class="math inline">\(\beta\)</span>)</p>
+<ul>
+<li>Classer les et commenter. Visualisez-vous les deux familles ?
+<form>
+<fieldset>
+<label for="exampleTextarea" class="form-label mt-4">Vos réponses</label>
+<textarea class="form-control" id="exampleTextarea" rows="3" data-lt-tmp-id="lt-866928" spellcheck="false" data-gramm="false" style="line-height: 24px;"></textarea>
+</fieldset>
+</form></li>
+</ul></li>
+</ul>
+</section>
+<section id="étude-phylogénique-analyse-de-la-famille-multigénique-de-lhémoglobine" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="étude-phylogénique-analyse-de-la-famille-multigénique-de-lhémoglobine"><span class="header-section-number">1.3</span> Étude phylogénique : Analyse de la famille multigénique de l’hémoglobine</h2>
+<p>On peut déterminer la <strong>distance évolutive</strong> entre 2 séquences par le <strong>nombre de substitutions</strong> qui se sont produites sur les 2 lignées évolutives depuis l’ancêtre commun</p>
+<ul>
+<li><p>Revenez sur la page des résultats obtenus précédemment et cliquez sur le bouton <em>Phylogenic Tree</em></p>
+<ul>
+<li>Quelle est la signification du graphique ?</li>
+<li>Faites varier l’affichage du phylogramme pour obtenir l’affichage de votre choix</li>
+<li>Donnez maintenant la phylogénie des 10 hémoglobines ?
+<form>
+<fieldset>
+<label for="exampleTextarea" class="form-label mt-4">Vos réponses</label>
+<textarea class="form-control" id="exampleTextarea" rows="3" data-lt-tmp-id="lt-866928" spellcheck="false" data-gramm="false" style="line-height: 24px;"></textarea>
+</fieldset>
+</form></li>
+</ul></li>
+</ul>
+</section>
+<section id="définition-dune-séquence-consensus" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="définition-dune-séquence-consensus"><span class="header-section-number">1.4</span> Définition d’une séquence consensus</h2>
+<section id="obtention-des-séquences-introniques" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="obtention-des-séquences-introniques"><span class="header-section-number">1.4.1</span> Obtention des séquences introniques</h3>
+<p>Vous allez tenter de définir la présence de séquences de reconnaissance des introns. Pour cela, vous devez comparer les séquences introniques entre elles.</p>
+<p>Utilisez les données du NCBI pour :</p>
+<ol type="1">
+<li>Récupérer les 15 premiers nucléotides des introns des gènes HBB, HBD, HBE1, HBG1, HBG2 copiez-les dans un fichier au format FASTA</li>
+<li>Récupérer les 15 derniers nucléotides des introns des gènes HBB, HBD, HBE1, HBG1, HBG2 créez un autre fichier au format FASTA</li>
+</ol>
+<ul>
+<li>Comment procédez-vous ?
+<form>
+<fieldset>
+<label for="exampleTextarea" class="form-label mt-4">Votre réponse</label>
+<textarea class="form-control" id="exampleTextarea" rows="3" data-lt-tmp-id="lt-866928" spellcheck="false" data-gramm="false" style="line-height: 24px;"></textarea>
+</fieldset>
+</form></li>
+</ul>
+</section>
+<section id="développement-de-lagorithme" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="développement-de-lagorithme"><span class="header-section-number">1.4.2</span> Développement de l’agorithme</h3>
+<p>Il s’agit ici de trouver s’il existe une séquence particulière signalant le début et la fin des introns. Cette(ces) séquence(s) invariante(s) doi(ven)t logiquement se retrouver dans chaque intron.</p>
+<ul>
+<li><p>Dans un premier temps, ne prenez en compte que le cas des introns de HBB</p></li>
+<li><p>Aligner manuellement les séquences de début et de fin d’introns en les écrivant l’une sous l’autre dans le fichier.</p>
+<ul>
+<li>Trouvez-vous des nucléotides en positions fixes ?</li>
+</ul></li>
+<li><p>Afin de pouvoir généraliser cette observation, il faut pouvoir répéter la comparaison des séquences introniques aux autres introns. Pour cela, nous allons créer un outil de comparaison de séquence et d’écriture de séquence consensus.</p></li>
+<li><p>Dans un premier temps, réfléchissez et définissez l’algorithme de l’outil. (Écrire un algorithme revient à décrire en opérations simples une méthode d’analyse)</p>
+<ul>
+<li>Définissez l’opération de base à effectuer ?</li>
+<li>Combien de fois devez-vous la faire ?</li>
+<li>Écrivez un premier algorithme pour cette méthode répétitive
+<form>
+<fieldset>
+<label for="exampleTextarea" class="form-label mt-4">Votre algorithme</label>
+<textarea class="form-control" id="exampleTextarea" rows="3" data-lt-tmp-id="lt-866928" spellcheck="false" data-gramm="false" style="line-height: 24px;"></textarea>
+</fieldset>
+</form></li>
+</ul></li>
+<li><p>En informatique, les opérations répétitives sont normalement remplacées par une boucle incluant l’opération de base, répétée n fois dans la boucle. Les valeurs numériques de la méthode sont alors remplacées par des paramètres (des valeurs) stockées dans des variables mémoires.</p></li>
+<li><p>Pour simplifier la procédure et traiter ensemble les débuts et les fin d’introns, vous écrirez les séquences sous la forme suivante :<br>
+15 premiers nucléotides de l’intron … 15 derniers nucléotides de l’intron</p>
+<ul>
+<li>Quelles sont les parties de votre algorithme que vous devez transformer en paramètres ?</li>
+<li>Quelles vont être les variables à définir ?</li>
+<li>Écrivez un algorithme paramétré de la méthode de comparaison ?
+<form>
+<fieldset>
+<label for="exampleTextarea" class="form-label mt-4">Votre algorithme</label>
+<textarea class="form-control" id="exampleTextarea" rows="3" data-lt-tmp-id="lt-866928" spellcheck="false" data-gramm="false" style="line-height: 24px;"></textarea>
+</fieldset>
+</form></li>
+</ul></li>
+</ul>
+</section>
+<section id="transcription-sous-r-et-vérification-dans-clustal" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="transcription-sous-r-et-vérification-dans-clustal"><span class="header-section-number">1.4.3</span> Transcription sous R et vérification dans <em>Clustal</em></h3>
+<p>Maintenant que votre algorithme est écrit, vous pouvez le transcrire dans n’importe quel langage de votre choix.</p>
+<ul>
+<li><p>Pour illustrer ce point, <strong>transcrivez votre algorithme dans R</strong> en utilisant vos connaissances de la programmation de R, le logiciel RStudio et l’aide fournie en Documents Annexes 4 (Aide pour le code R)</p></li>
+<li><p>Votre outil vous permet-il de voir une séquence consensus définissant le début et la fin des introns ?</p>
+<form>
+<fieldset>
+<p><label for="exampleTextarea" class="form-label mt-4">Votre code R</label></p>
+<textarea class="form-control" id="exampleTextarea" rows="3" data-lt-tmp-id="lt-866928" spellcheck="false" data-gramm="false" style="line-height: 24px;"></textarea>
+</fieldset>
+</form></li>
+<li><p>Utilisez un <strong>programme d’alignement de séquences</strong> pour vérifier votre analyse des introns de HBB</p>
+<ul>
+<li>Quel programme d’alignement utilisez-vous ?</li>
+<li>Quelle est le résultat de l’alignement ?</li>
+<li>Coïncide-t-il avec le résultat de votre script R ?</li>
+</ul></li>
+<li><p>Arrangez-vous maintenant pour comparer dans le même programme la totalité des introns de la famille <span class="math inline">\(\beta\)</span></p>
+<ul>
+<li>Quelle est la séquence consensus présente dans tous les introns ?</li>
+</ul></li>
+</ul>
+<form>
+<fieldset>
+<label for="exampleTextarea" class="form-label mt-4">Vos réponses</label>
+<textarea class="form-control" id="exampleTextarea" rows="3" data-lt-tmp-id="lt-866928" spellcheck="false" data-gramm="false" style="line-height: 24px;"></textarea>
+</fieldset>
+</form>
+</section>
+<section id="création-dune-séquence-logo" class="level3" data-number="1.4.4">
+<h3 data-number="1.4.4" class="anchored" data-anchor-id="création-dune-séquence-logo"><span class="header-section-number">1.4.4</span> Création d’une séquence logo</h3>
+<p>Une séquence logo est une représentation graphique de la conservation des nucléotides ou des acides aminés dans des séquences.</p>
+<p>Vous allez maintenant utiliser un programme de création de logos de séquences afin de visualiser graphiquement l’existence de la séquence consensus des hémoglobines.</p>
+<ul>
+<li><p>Ouvrez la page de l’outil en ligne <a href="http://weblogo.berkeley.edu/logo.cgi">WebLogo</a></p></li>
+<li><p>Collez vos séquences d’introns dans la case <em>Multiple Sequence Alignment</em> du logiciel</p>
+<ul>
+<li>Que vous indique le résultat obtenu ?</li>
+</ul></li>
+</ul>
+<p>Une analyse similaire a été réalisée sur la frontière entre Exon-Introns pour une centaine de séquences différentes. Le résultat est visualisable en cliquant sur les liens ci-dessous (les paramètres sont déjà rentrés dans la page du site) :</p>
+<button type="button" class="btn btn-primary">
+<form method="post" action="http://weblogo.berkeley.edu/logo.cgi">
+<input name="command" value="Edit Logo" type="submit"> Exon-Intron (Donor) Sites <input name="title" value="exon | intron" type="hidden"> <input name="firstnum" value="-11" type="hidden"> <input name="logostart" value="-6" type="hidden"> <input name="logoend" value="8" type="hidden"> <input name="logowidth" value="8" type="hidden"> <input name="sequence" value="
+> 19082_AF115399
+GGATCGACCCTgtaagtttt
+> 45328_AB000381
+GCGCGCTCAGTgtaagtatc
+> 45328_AB000381
+AATCTCCATTCgtaagtacc
+> 45330_AB001517
+ACTGGACGCTGgtaaggact
+> 45331_AB001517
+TCGCTTACCGGgtgagcgcg
+> 45331_AB001517
+GACCTTAAAAAgtaagtatg
+> 45331_AB001517
+CGTCGATGAAGgtacttgcc
+> 45331_AB001517
+CCTGATGGCAGgtaaggggg
+> 45331_AB001517
+GATGACTCCAGgtgcggcct
+> 45331_AB001517
+ACAGCCTGGACgtatgtccc
+> 45331_AB001517
+CGGCTGGCCAAgtaggtctc
+> 45331_AB001517
+CACTCCCTGAGgtaagcctt
+> 45331_AB001517
+TGGCTGTTCAGgtttgtccc
+> 45331_AB001517
+ACGACGGCAAGgtaggctcc
+> 45331_AB001517
+GACCTTCACAGgtgatgttt
+> 45331_AB001517
+GGCTCCTTGATgtaagcacc
+> 45331_AB001517
+GACCTCTGATGgtgagcacg
+> 45331_AB001517
+GCCAAGGGGAAgtgagtgtc
+> 45331_AB001517
+ACGCCATGGAGgtgagccgc
+> 45331_AB001517
+CGTCAGGAAAGgtgagcaga
+> 45331_AB001517
+CTCTCCCACTGgtgagcact
+> 45331_AB001517
+CAGGGGCGAGAgtgagttgg
+> 45331_AB001517
+CTGAAGTCCAGgtagagggt
+> 45331_AB001517
+CTGTCGAAACTgtacgtgtg
+> 45332_AB001517
+GGGTCGCGCTGgtgagtgga
+> 45332_AB001517
+GAGGCCTCGGCgtaagtcct
+> 45332_AB001517
+GGCGAGAGCAGgtgtggggg
+> 45332_AB001517
+GCTAAAAACCTgtgcgtatt
+> 45332_AB001517
+AAGCCCATCGGgtgtgtaca
+> 45333_AB001517
+GGGTCGCGCTGgtgagtgga
+> 45333_AB001517
+GAGGCCTCGGCgtaagtcct
+> 45333_AB001517
+GGCGAGAGCAGgtgtggggg
+> 45333_AB001517
+GCTAAAAACCTgtgcgtatt
+> 45334_AB001523
+CATCGTCACCTgtgagtgcc
+> 45334_AB001523
+GAATGGAGAAGgtatgagtt
+> 45334_AB001523
+CAGAGTGCTGTgtgagtacc
+> 45334_AB001523
+CAGAGTGACAGgtaagtgta
+> 45334_AB001523
+TCATGGTTCAGgtacttgac
+> 45334_AB001523
+CGGGGCCGGGGgtgagtagt
+> 45334_AB001523
+AGCTCTTAGAAgtgagtcgg
+> 45334_AB001523
+CCACAGAAAAGgtgcctacc
+> 45334_AB001523
+ACCAGAAACAGgtacttttt
+> 45334_AB001523
+AACACTACTTAgtaagtatt
+> 45334_AB001523
+GAGTTTTACATgtaattgat
+> 45334_AB001523
+CAAATTGAAAAgtatccttt
+> 45334_AB001523
+AGACAGCCCAGgtaagacca
+> 45334_AB001523
+TCAGGACTCAGgtatgcgtt
+> 45334_AB001523
+GCCGCTGGCTGgtgagtggg
+> 45334_AB001523
+CAACACGAGAGgtgaggtgc
+> 45334_AB001523
+CAGACCACAAAgtgagtagg
+> 45334_AB001523
+TCAGGAACACGgtaacggag
+> 45334_AB001523
+AGTCCCAGCAGgtaaacatt
+> 45334_AB001523
+AAAATTTTTTTgtaagtgat
+> 45334_AB001523
+TATGTATGAAGgtaggtggt
+> 45334_AB001523
+ACTGGACGCTGgtaaggact
+> 45335_AB001523
+TCGCTTACCGGgtgagcgcg
+> 45337_AB00189S
+TGTGGTACCTGgtgagtagg
+> 45337_AB00189S
+CCCCAAATTATgtaagtcaa
+> 45337_AB00189S
+AATGAAAATAAgtacgtcac
+> 45338_AB00189S
+TGTGGTACCTGgtgagtagg
+> 45338_AB00189S
+CCCCAAATTATgtaagtcaa
+> 45338_AB00189S
+AATGAAAATAAgtacgtcac
+> 45338_AB00189S
+GGAGAAGCAAGgtcagtggc
+> 45339_AB00189S
+TGTGGTACCTGgtgagtagg
+> 45339_AB00189S
+CCCCAAATTATgtaagtcaa
+> 45339_AB00189S
+AATGAAAATAAgtacgtcac
+> 45339_AB00189S
+GGAGAAGCAAGgtcagtggc
+> 45340_AB00189S
+TGTGGTACCTGgtgagtagg
+> 45340_AB00189S
+CCCCAAATTATgtaagtcaa
+> 45340_AB00189S
+AATGAAAATAAgtacgtcac
+> 45341_AB00189S
+TGTGGTACCTGgtgagtagg
+> 45341_AB00189S
+CCCCAAATTATgtaagtcaa
+> 45341_AB00189S
+AATGAAAATAAgtacgtcac
+> 45341_AB00189S
+AAGACCAGCAGgtaatgcat
+> 45342_AB00189S
+TGTGGTACCTGgtgagtagg
+> 45342_AB00189S
+CCCCAAATTATgtaagtcaa
+> 45342_AB00189S
+AATGAAAATAAgtacgtcac
+> 45342_AB00189S
+AGATTACACAGgtaatgagc
+> 45342_AB00189S
+AAGACCAGCAGgtaatgcat
+> 45342_AB00189S
+GTGTGTCGAAGgtacggtcc
+> 45342_AB00189S
+GTGCAGCAACGgtgagcagc
+> 45343_AB00189S
+TGTGGTACCTGgtgagtagg
+> 45343_AB00189S
+CCCCAAATTATgtaagtcaa
+> 45343_AB00189S
+AATGAAAATAAgtacgtcac
+> 45343_AB00189S
+AAGACCAGCAGgtaatgcat
+> 45343_AB00189S
+GTGTGTCGAAGgtacggtcc
+> 45343_AB00189S
+GTGCAGCAACGgtgagcagc
+> 45344_AB00189S
+TGTGGTACCTGgtgagtagg
+> 45344_AB00189S
+CCCCAAATTATgtaagtcaa
+> 45344_AB00189S
+AATGAAAATAAgtacgtcac
+> 45344_AB00189S
+AGATTACACAGgtaatgagc
+> 45344_AB00189S
+AAGACCAGCAGgtaatgcat
+> 45345_AB002059
+TATGTGGTAGGgtaagagag
+> 45345_AB002059
+AGCCACCTCAGgtgggggcc
+> 45345_AB002059
+GATGCCCAGAGgtgagttta
+> 45345_AB002059
+ACACAGCCACGgtaactgtg
+> 45345_AB002059
+GTTGTGCCCTCgtaagtgtc
+> 45345_AB002059
+AACTTCTCTAAgtaagcaga
+> 45345_AB002059
+TGGCGTTGCTGgtgggtccc
+> 45345_AB002059" type="hidden">
+</form>
+</button>
+<button type="button" class="btn btn-primary">
+<form method="post" action="http://weblogo.berkeley.edu/logo.cgi">
+<input name="command" value="Edit Logo" type="submit"> Intron-Exon (Acceptor) Sites <input name="title" value="intron | exon" type="hidden"> <input name="firstnum" value="-21" type="hidden"> <input name="logostart" value="-20" type="hidden"> <input name="logoend" value="3" type="hidden"> <input name="logowidth" value="12" type="hidden"> <input name="sequence" value="
+> 19082_AF115399
+ttctctgaaatatgaatttagACTGGTACTTATCATGGAG
+> 45328_AB000381
+gcctgctttctcccctctcagGGACTTACAGTTTGAGATG
+> 45328_AB000381
+cattgctgcttctttttttagGCATAAATTCTCGTGAACT
+> 45330_AB001517
+aacttcctgtgtgttttgcagACAGCTGGATAGAAAACGA
+> 45331_AB001517
+acaattttgttttcttcacagTTTTCAAATTTGCTGGGTA
+> 45331_AB001517
+tgtggtttttgtctttatcagCAACAAATCTGACACGCTG
+> 45331_AB001517
+gtgacctctggcgtcctgcagGGGGCGATGCGCTGCTGGT
+> 45331_AB001517
+atgtccgcgttccttccatagGAAGTTTGTTGTCACAAAG
+> 45331_AB001517
+tgccatctccctcttttccagGTGCTTTGTGGTTGGGAGC
+> 45331_AB001517
+accctgtgcttccccttgcagCTGTACTCACTCAGCCAGG
+> 45331_AB001517
+tcttctctctcgtcaattcagGTACTTCTTCAATAAAGAA
+> 45331_AB001517
+ttacaggcccgttctctgcagCATTTCAGATCAGAGCATC
+> 45331_AB001517
+cagcttcccccgtgtgcacagGCCTGGGCCAGCTGCTGGT
+> 45331_AB001517
+gcccctcctgtcctgcctcagGTCAAGGTGTGGAACACCC
+> 45331_AB001517
+gaccttgcctcttctctgcagGTACCGAAACTTCCGCACC
+> 45331_AB001517
+cgcctccttgctctacggtagGTTTTGTCTGGACACGAAG
+> 45331_AB001517
+ttactttgcatctctgtttagCTCTGGCTGTGACTTTTCG
+> 45331_AB001517
+ccatgtctcctctccacccagGGCCTTCACCGCCCTGTGC
+> 45331_AB001517
+ccactgcttttgctgttctagGAATTTTTGAACCGAAGAA
+> 45331_AB001517
+taacggttcttttttccccagGTGACATGAGTTCTCGGCA
+> 45331_AB001517
+aagcactgcttaatttcccagGGCGCTGCTGGGCGGCCAC
+> 45331_AB001517
+tgattttttctccttttgcagTTGAAGTGGTCACCTCCTC
+> 45331_AB001517
+cttagggagtctccctttcagAGCCGGGACGCTGCTGCCT
+> 45331_AB001517
+catcccctgtgtgattgacagCTGTAGCTGGAACCACTAT
+> 45332_AB001517
+cagctcccgctcctctcgcagGTGCTGTCTGGATGCGGAG
+> 45332_AB001517
+ctctggttttcccccgtgcagGATCCTGGTGCACCTGAGC
+> 45332_AB001517
+ttgccctgtgctctttcccagGAATGTTTTGACCGAGTCT
+> 45332_AB001517
+aggccttttgtctcccggtagGAGCACGTTTGCCGTGGAC
+> 45332_AB001517
+cgtgttcttttcgcctttcagCTTGTGCTGCATTGCACCT
+> 45333_AB001517
+cagctcccgctcctctcgcagGTGCTGTCTGGATGCGGAG
+> 45333_AB001517
+ctctggttttcccccgtgcagGATCCTGGTGCACCTGAGC
+> 45333_AB001517
+ttgccctgtgctctttcccagGAATGTTTTGACCGAGTCT
+> 45333_AB001517
+cgtgttcttttcgcctttcagCTTGTGCTGCATTGCACCT
+> 45334_AB001523
+atttctttcttcccttcatagGTGCTGGAGATCAGAATTT
+> 45334_AB001523
+acttcaaacaattgtttacagGTCCTATGGCCGGGCTCCG
+> 45334_AB001523
+cagtgacttgtttgtttttagGATACCGAAGTGTATAAAG
+> 45334_AB001523
+agtctgttcatgtctttgcagGTGTGTTGTGCTCTCCGAC
+> 45334_AB001523
+aaacgtatcttgggcgaatagGAGGAGCTTGCCTTTGTTT
+> 45334_AB001523
+tcatgatgtgtgtttgtttagATGGTGCCAACTGGCTGAC
+> 45334_AB001523
+ttcgcatttgcacccccacagGTCTCTGTCCCACCTGGTG
+> 45334_AB001523
+attgtggatttatcttaacagTTAAAGTCCTTGGGCTATC
+> 45334_AB001523
+tctcgtttctttctgtttaagCCAACACAGCTCAGAGTCC
+> 45334_AB001523
+tgtgtttttacttccccacagGATTTGTCCCATGCCACCA
+> 45334_AB001523
+actgtttgttgactttgcaagGAGGAAAAAGGCTCCACAA
+> 45334_AB001523
+ctccttacctctccgctccagCTACCTGCAGACCAGCAGC
+> 45334_AB001523
+tacgataatgtctatttacagGTCATAAGATAGTGCTACC
+> 45334_AB001523
+tgcctgattctttgactctagGCCAAGGAACCTGGAACGT
+> 45334_AB001523
+ccacgatctcttttcctttagATAGCCTTCTGGCAGGCAT
+> 45334_AB001523
+gactttttctgtccttcgtagAACAGTCTTCTGAGGCCGC
+> 45334_AB001523
+gtctttgtgcttcctcctcagGTGTCGATTGACTGCCCGT
+> 45334_AB001523
+ctttttgtttttccactttagGAAATATGTTCAAGTTTGT
+> 45334_AB001523
+gacccccaactctctttccagCCCATCTACAGCAAGCAGT
+> 45334_AB001523
+ttctctccctttcctgcccagACATTATACAACGTGAAGG
+> 45334_AB001523
+catcgcttcctctcgtttcagTTGTCGACAACAGTAGCAA
+> 45334_AB001523
+aacttcctgtgtgttttgcagACAGCTGGATAGAAAACGA
+> 45335_AB001523
+acaattttgttttcttcacagTTTTCAAATTTGCTGGGTA
+> 45337_AB00189S
+ttgtgtctttcgtgcttacagCATTGTGGCGACAAGAACA
+> 45337_AB00189S
+caccacgattccatttcttagGATTCCTACGCCAGCTACG
+> 45337_AB00189S
+tggttttttcctttgtttcagACACGGCACTCGTTGTGCG
+> 45338_AB00189S
+ttgtgtctttcgtgcttacagCATTGTGGCGACAAGAACA
+> 45338_AB00189S
+caccacgattccatttcttagGATTCCTACGCCAGCTACG
+> 45338_AB00189S
+tggttttttcctttgtttcagACACGGCACTCGTTGTGCG
+> 45338_AB00189S
+aatgcattctttacccattagGTGATCTTGAGACTCCTGT
+> 45339_AB00189S
+ttgtgtctttcgtgcttacagCATTGTGGCGACAAGAACA
+> 45339_AB00189S
+caccacgattccatttcttagGATTCCTACGCCAGCTACG
+> 45339_AB00189S
+tggttttttcctttgtttcagACACGGCACTCGTTGTGCG
+> 45339_AB00189S
+aatgcattctttacccattagGTGATCTTGAGACTCCTGT
+> 45340_AB00189S
+ttgtgtctttcgtgcttacagCATTGTGGCGACAAGAACA
+> 45340_AB00189S
+caccacgattccatttcttagGATTCCTACGCCAGCTACG
+> 45340_AB00189S
+tggttttttcctttgtttcagACACGGCACTCGTTGTGCG
+> 45341_AB00189S
+ttgtgtctttcgtgcttacagCATTGTGGCGACAAGAACA
+> 45341_AB00189S
+caccacgattccatttcttagGATTCCTACGCCAGCTACG
+> 45341_AB00189S
+tggttttttcctttgtttcagACACGGCACTCGTTGTGCG
+> 45341_AB00189S
+ctcctgcctttgctcctacagGAAGTGCGTGAGTGTGTGC
+> 45342_AB00189S
+ttgtgtctttcgtgcttacagCATTGTGGCGACAAGAACA
+> 45342_AB00189S
+caccacgattccatttcttagGATTCCTACGCCAGCTACG
+> 45342_AB00189S
+tggttttttcctttgtttcagACACGGCACTCGTTGTGCG
+> 45342_AB00189S
+-ggcaatttgcactcacacagCTCAATCCACCCCAGGCTC
+> 45342_AB00189S
+ctcctgcctttgctcctacagGAAGTGCGTGAGTGTGTGC
+> 45342_AB00189S
+aggaacggtatcttcccacagGTGTGACGAGAACTGCTTG
+> 45342_AB00189S
+tttcctgatgcggggccccagCTGACGAGACATTCTGCGA
+> 45343_AB00189S
+ttgtgtctttcgtgcttacagCATTGTGGCGACAAGAACA
+> 45343_AB00189S
+caccacgattccatttcttagGATTCCTACGCCAGCTACG
+> 45343_AB00189S
+tggttttttcctttgtttcagACACGGCACTCGTTGTGCG
+> 45343_AB00189S
+ctcctgcctttgctcctacagGAAGTGCGTGAGTGTGTGC
+> 45343_AB00189S
+aggaacggtatcttcccacagGTGTGACGAGAACTGCTTG
+> 45343_AB00189S
+tttcctgatgcggggccccagCTGACGAGACATTCTGCGA
+> 45344_AB00189S
+ttgtgtctttcgtgcttacagCATTGTGGCGACAAGAACA
+> 45344_AB00189S
+caccacgattccatttcttagGATTCCTACGCCAGCTACG
+> 45344_AB00189S
+tggttttttcctttgtttcagACACGGCACTCGTTGTGCG
+> 45344_AB00189S
+-ggcaatttgcactcacacagCTCAATCCACCCCAGGCTC
+> 45344_AB00189S
+ctcctgcctttgctcctacagGAAGTGCGTGAGTGTGTGC
+> 45345_AB002059
+tgcccgacttctcctccccagGTGGGCGCTCCTCGCCAAA
+> 45345_AB002059
+accttgagacttgcctcctagGGAGAGAACGTGTTCTTCT
+> 45345_AB002059
+ctgctctctctcccacctcagCACCCGTCCGTCCCACTGG
+> 45345_AB002059
+agttcatcttttgttttctagGTGTAAAAACAGGCCAGTG
+> 45345_AB002059
+tcacctcccttccacctgcagGAGGCCCCTGCTGGCCCAG
+> 45345_AB002059
+gacctttcccactcctcccagGTCCAATGCCTTGGAGACC
+> 45345_AB002059
+aaagctatgtgctatgtgcagGGTGGCTCTGTAGGCATCA
+> 45345_AB002059
+agccttctttcctgcccacagGACAGCCACTCACTGGTGG" type="hidden">
+</form>
+</button>
+<ul>
+<li><p>Les paramètres sont déjà remplis, vous avez juste à cliquer sur le bouton <em>Create logo</em>.</p>
+<ul>
+<li>Retrouvez-vous les positions caractéristiques des séquences donneuses et acceptrices des introns que vous avez identifiées ?</li>
+<li>Quels sont les informations supplémentaires que donnent les séquences logo</li>
+</ul></li>
+</ul>
+<form>
+<fieldset>
+<label for="exampleTextarea" class="form-label mt-4">Vos réponses</label>
+<textarea class="form-control" id="exampleTextarea" rows="3" data-lt-tmp-id="lt-866928" spellcheck="false" data-gramm="false" style="line-height: 24px;"></textarea>
+</fieldset>
+</form>
+</section>
+</section>
+<section id="recherche-de-similitudes-dans-les-bases-de-données" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="recherche-de-similitudes-dans-les-bases-de-données"><span class="header-section-number">1.5</span> Recherche de similitudes dans les bases de données</h2>
+<section id="recherche-dans-la-base-de-données-swiss-prot" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="recherche-dans-la-base-de-données-swiss-prot"><span class="header-section-number">1.5.1</span> Recherche dans la base de données <em>Swiss-Prot</em></h3>
+<p>Vous allez maintenant rechercher dans une base de données protéique les séquences correspondantes à celle de la protéine HBB.</p>
+<p>Pour commencer rechercher toutes les séquences similaires à HBB dans la base de donnée <em>Swiss-Prot</em></p>
+<ul>
+<li>Connectez-vous sur le site de <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a>.</li>
+</ul>
+<div class="alert alert-dismissible alert-primary">
+REMARQUE: Pour chaque recherche blast, une page de résultat est stockée sur le serveur pendant environ 30 h. Vous pouvez donc pendant ce laps de temps visualiser de nouveau le résultat sans avoir à relancer la recherche. Pour cela notez le numéro RID qui apparaît dans la partie résumé de la recherche en haut de la page de résultats.
+</div>
+<ul>
+<li><p>Quel programme <em>blast</em> allez-vous choisir pour rechercher les séquences protéiques HBB dans la base de données <em>Swiss-Prot</em> ?</p></li>
+<li><p>Copiez la séquence de la protéine HBB dans la case <em>Enter Query Sequence</em> ou indiquez le chemin jusqu’à un fichier fasta contenant la séquence protéique de HBB en cliquant sur le bouton <em>Browse</em>.</p>
+<ul>
+<li>Quel paramètre devez-vous spécifier dans blast pour rechercher dans Swiss-Prot ?</li>
+<li>Quelle est la matrice proposée par défaut ?</li>
+<li>Quels sont les paramètres de Gap ?</li>
+<li>Quelle est la taille du mot utilisé pour le hachage ?</li>
+<li>Combien de temps a duré la recherche ?</li>
+<li>Quel est la version de blast utilisée ?</li>
+<li>Quel est le résultat donné par BLAST ?</li>
+<li>Quel est le score maximal ?</li>
+<li>Quelle est la E-value ?</li>
+<li>Ce résultat est-il valide selon vous ?
+<form>
+<fieldset>
+<label for="exampleTextarea" class="form-label mt-4">Vos réponses</label>
+<textarea class="form-control" id="exampleTextarea" rows="3" data-lt-tmp-id="lt-866928" spellcheck="false" data-gramm="false" style="line-height: 24px;"></textarea>
+</fieldset>
+</form></li>
+</ul></li>
+</ul>
+</section>
+<section id="recherche-dans-la-base-de-donnée-refseq" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="recherche-dans-la-base-de-donnée-refseq"><span class="header-section-number">1.5.2</span> Recherche dans la base de donnée RefSeq</h3>
+<ul>
+<li><p>Revenez sur la page principale en cliquant le bouton Blast en haut à gauche de la page.</p></li>
+<li><p>Recherchez maintenant la même séquence mais dans la base de données RefSeq_rna</p>
+<ul>
+<li>Quel programme blast devez-vous choisir ?</li>
+<li>Les paramètres de matrice, gap et taille du mot sont-ils différents ? Que reflètent-ils ?</li>
+<li>Combien de temps a duré la recherche ?</li>
+<li>Pourquoi une telle variation par rapport à la recherche dans Swiss-Prot ?</li>
+<li>Comparez la qualité des résultats entre les deux recherches ?</li>
+<li>Quelle est la E-value maximale ?</li>
+<li>Quel est le résultat proposé par BLAST ?</li>
+<li>Comparez les résultats affichés avec ceux obtenus précédemment, que concluez-vous ?
+<form>
+<fieldset>
+<label for="exampleTextarea" class="form-label mt-4">Vos réponses</label>
+<textarea class="form-control" id="exampleTextarea" rows="3" data-lt-tmp-id="lt-866928" spellcheck="false" data-gramm="false" style="line-height: 24px;"></textarea>
+</fieldset>
+</form></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="sauvegarde-de-votre-travail" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="sauvegarde-de-votre-travail"><span class="header-section-number">1.6</span> Sauvegarde de votre travail</h2>
+<p>Si pouvez maintenant faire la sauvegarde définitive de votre travail en sauvegardant comme <a href="quarto_bio504-TP1.html#sauvegarde">précédemment</a>. Si vous avez réalisé une sauvegarde intermédiaire, vérifier si vous pouvez remplacer l’ancienne sauvegarde par la nouvelle.</p>
+</section>
+<section id="pour-aller-plus-loin-travail-personnel" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="pour-aller-plus-loin-travail-personnel"><span class="header-section-number">1.7</span> Pour aller plus loin (Travail personnel)</h2>
+<ul>
+<li>Modifiez votre algorithme pour analyser non plus les 2 séquences des introns de HBB, mais les deux séquences des introns des 5 gènes de la famille ß</li>
+<li>Paramétrer votre algorithme pour qu’il demande les séquences à analyser</li>
+<li>Recherchez les séquences homologues à HBA1 dans <em>Swiss-Prot</em> et <em>RefSeq_rna</em></li>
+<li>Affichez l’arbre phylogénetique pour les protéines de la famille alpha</li>
+<li>Affichez l’arbre phylogénetique pour les protéines des deux familles d’hémoglobine</li>
+</ul>
+<p xmlns:cc="http://creativecommons.org/ns#" class="text-body-secondary">
+Ces pages de <span property="cc:attributionName">Thierry Gautier</span> sont licenciées <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-SA 4.0&nbsp;<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt=""></a>
+</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

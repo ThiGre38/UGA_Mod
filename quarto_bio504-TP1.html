@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Thierry Gautier">
+<meta name="dcterms.date" content="2025-10-12">
+
+<title>BIO504 - TP 1 – BIO504: TP de Bioinformatique</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-a26f3680889bc016604be2101547878f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">BIO504: TP de Bioinformatique</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./quarto_syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cours" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Cours</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-cours">    
+        <li>
+    <a class="dropdown-item" href="./pdf/25_BIO504_CM1.pdf">
+ <span class="dropdown-text">CM1: Les Bases de données</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./pdf/25_BIO504_CM2.pdf">
+ <span class="dropdown-text">CM2: Les alignements principes et usages</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./pdf/25_BIO504_CM3.pdf">
+ <span class="dropdown-text">CM3: Les Matrices de substitution</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./pdf/25_BIO504_CM4.pdf">
+ <span class="dropdown-text">CM4: PDB et Structures 3D</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./pdf/25_BIO504_CM5.pdf">
+ <span class="dropdown-text">CM5: Les Matrices et BLAST niveau 2</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-travaux-pratiques" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Travaux Pratiques</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-travaux-pratiques">    
+        <li>
+    <a class="dropdown-item" href="./quarto_bio504-TP1.html">
+ <span class="dropdown-text">TP1: Bases de données</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./quarto_bio504-TP2b.html">
+ <span class="dropdown-text">TP2: Comparaison et Alignements</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./quarto_bio504-TP3b.html">
+ <span class="dropdown-text">TP3: Consensus et Blast</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./quarto_bio504-TP4b.html">
+ <span class="dropdown-text">TP4: Modélisation 3D</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-docs-annexes" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Docs Annexes</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-docs-annexes">    
+        <li>
+    <a class="dropdown-item" href="./quarto_bio504-HB.html">
+ <span class="dropdown-text">A1: Les hémoglobines</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./quarto_FASTA.html">
+ <span class="dropdown-text">A2: Enregistrement Fasta</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./quarto_fichiers.html">
+ <span class="dropdown-text">A3: Les Séquences HB</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./504_images/base-r.jpg">
+ <span class="dropdown-text">A4: Aide pour le code R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./quarto_proteines.html">
+ <span class="dropdown-text">A5: Une famille de Protéines</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./quarto_videos.html">
+ <span class="dropdown-text">A6: Vidéos 2020 (Covid)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-réponses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Réponses</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-réponses">    
+        <li>
+    <a class="dropdown-item" href="./q_aide1.html">
+ <span class="dropdown-text">Réponses du TP1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./q_aide2.html">
+ <span class="dropdown-text">Réponses du TP2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./q_aide3.html">
+ <span class="dropdown-text">Réponses du TP3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./q_aide4.html">
+ <span class="dropdown-text">Réponses du TP4</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">Table des matières</h2>
+   
+  <ul>
+  <li><a href="#à-la-découverte-de-la-famille-des-hémoglobines-via-les-bases-de-données-du-ncbi" id="toc-à-la-découverte-de-la-famille-des-hémoglobines-via-les-bases-de-données-du-ncbi" class="nav-link active" data-scroll-target="#à-la-découverte-de-la-famille-des-hémoglobines-via-les-bases-de-données-du-ncbi"><span class="header-section-number">1</span> À la découverte de la famille des hémoglobines via les bases de données du <em>NCBI</em></a>
+  <ul class="collapse">
+  <li><a href="#objectifs-du-tp" id="toc-objectifs-du-tp" class="nav-link" data-scroll-target="#objectifs-du-tp"><span class="header-section-number">1.1</span> Objectifs du TP</a></li>
+  <li><a href="#problématique" id="toc-problématique" class="nav-link" data-scroll-target="#problématique"><span class="header-section-number">1.2</span> Problématique :</a></li>
+  <li><a href="#expérimentation-du-moteur-de-recherche-du-ncbi" id="toc-expérimentation-du-moteur-de-recherche-du-ncbi" class="nav-link" data-scroll-target="#expérimentation-du-moteur-de-recherche-du-ncbi"><span class="header-section-number">1.3</span> Expérimentation du moteur de recherche du NCBI</a></li>
+  <li><a href="#exploration-dune-région-génomique" id="toc-exploration-dune-région-génomique" class="nav-link" data-scroll-target="#exploration-dune-région-génomique"><span class="header-section-number">1.4</span> Exploration d’une région génomique</a><a id="questions" class="nav-link" data-scroll-target="undefined"></a></li>
+  <li><a href="#exploration-de-la-région-génomique-du-gène-hbb" id="toc-exploration-de-la-région-génomique-du-gène-hbb" class="nav-link" data-scroll-target="#exploration-de-la-région-génomique-du-gène-hbb"><span class="header-section-number">1.5</span> Exploration de la région génomique du gène HBB</a></li>
+  <li><a href="#caractérisation-des-gènes-de-la-famille-des-beta-globines" id="toc-caractérisation-des-gènes-de-la-famille-des-beta-globines" class="nav-link" data-scroll-target="#caractérisation-des-gènes-de-la-famille-des-beta-globines"><span class="header-section-number">1.6</span> Caractérisation des gènes de la famille des <span class="math inline">\(\beta\)</span>-globines</a><a id="tableau" class="nav-link" data-scroll-target="undefined"></a></li>
+  <li><a href="#représentation-graphique-des-gènes-de-la-famille-des-beta-globines" id="toc-représentation-graphique-des-gènes-de-la-famille-des-beta-globines" class="nav-link" data-scroll-target="#représentation-graphique-des-gènes-de-la-famille-des-beta-globines"><span class="header-section-number">1.7</span> Représentation graphique des gènes de la famille des <span class="math inline">\(\beta\)</span>-globines</a></li>
+  <li><a href="#exportation-au-format-fasta-des-séquences-dintérêt" id="toc-exportation-au-format-fasta-des-séquences-dintérêt" class="nav-link" data-scroll-target="#exportation-au-format-fasta-des-séquences-dintérêt"><span class="header-section-number">1.8</span> Exportation au format FASTA des séquences d’intérêt</a></li>
+  <li><a href="#sauvegarde-de-votre-travail" id="toc-sauvegarde-de-votre-travail" class="nav-link" data-scroll-target="#sauvegarde-de-votre-travail"><span class="header-section-number">1.9</span> Sauvegarde de votre travail</a><a id="sauvegarde" class="nav-link" data-scroll-target="undefined"></a></li>
+  <li><a href="#contrôle-continu-les-alpha-globines" id="toc-contrôle-continu-les-alpha-globines" class="nav-link" data-scroll-target="#contrôle-continu-les-alpha-globines"><span class="header-section-number">1.10</span> Contrôle continu : Les <span class="math inline">\(\alpha\)</span>-globines</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">BIO504 - TP 1</h1>
+<p class="subtitle lead">À la découverte de la famille des hémoglobines via les bases de données du NCBI</p>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Thierry Gautier </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            <a href="https://www.univ-grenoble-alpes.fr/">
+            Université Grenoble Alpes
+            </a>
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 12, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+<div>
+  <div class="abstract">
+    <div class="block-title">Synopsis :</div>
+    Comprendre et utiliser les conventions de stockage dans les bases de données généralistes
+  </div>
+</div>
+
+
+</header>
+
+
+
+<meta name="description" content="bioinformatics practical L3 level, University Grenoble Alpes">
+<meta name="keywords" content="UGA,Bioinformatics,course,practical,Licence">
+<meta name="author" content="Thierry GAUTIER">
+<meta name="generator" content="Jupyter-Markdown-quarto">
+
+<style>
+a{
+ text-decoration-line:none;
+}
+</style>
+<section id="à-la-découverte-de-la-famille-des-hémoglobines-via-les-bases-de-données-du-ncbi" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> À la découverte de la famille des hémoglobines via les bases de données du <em>NCBI</em></h1>
+<section id="objectifs-du-tp" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="objectifs-du-tp"><span class="header-section-number">1.1</span> Objectifs du TP</h2>
+<ol type="1">
+<li>Comprendre les conventions de stockage des données dans les bases de données nucléotidiques</li>
+<li>Exploiter ces conventions et les annotations associées afin de répondre à quelques questions d’ordre biologique</li>
+<li>Rechercher des informations complémentaires dans les bases de données</li>
+<li>Exporter des séquences nucléotidiques et protéiques</li>
+</ol>
+<p>On prendra pour exemple l’étude de la <a href="quarto_bio504-HB.html" target="_blank">famille multigénique de l’hémoglobine</a>.</p>
+</section>
+<section id="problématique" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="problématique"><span class="header-section-number">1.2</span> Problématique :</h2>
+<p>Maintenant que vous connaissez un peu la famille des hémoglobines, que pouvez-vous dire des gènes, des ARN messagers et des protéines de chaque famille ?<br>
+Sont-ils identiques ou différents ?<br>
+Pouvez-vous les comparer ?</p>
+<p>Pour répondre à ces questions, vous allez utiliser le moteur de recherche du <em>NCBI</em> (<em>National Center for Biotechnology Information</em>) et analyser les données stockées sur les gènes des hémoglobines</p>
+</section>
+<section id="expérimentation-du-moteur-de-recherche-du-ncbi" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="expérimentation-du-moteur-de-recherche-du-ncbi"><span class="header-section-number">1.3</span> Expérimentation du moteur de recherche du NCBI</h2>
+<ul>
+<li>Ouvrez un navigateur, de préférence <em>Mozilla Firefox</em></li>
+<li>Lancez le moteur de recherche du <em>NCBI</em> : <a target="_blank" title="NCBI Query" href="http://www.ncbi.nlm.nih.gov/sites/gquery">http://www.ncbi.nlm.nih.gov/sites/gquery</a></li>
+</ul>
+<p>Apparait à l’écran la liste de toutes les bases de données que vous pouvez interroger à travers ce site (voir <a target="_blank" title="CM1" href="../data/PDF/BIO504/2511_BIO504_CM1.pdf">CM1</a>).</p>
+<p><img alt="NCBI home" src="504_images/ncbihome2.png" width="50%"><br> <img alt="NCBI home" src="504_images/ncbihome3.png" width="50%"><br></p>
+<p>Pour avoir des informations sur les bases de données listées sous vos yeux, cliquez sur le bouton <span style="background-color: teal; color:white">Help</span>, en bas à gauche de la fenêtre du moteur de recherche.</p>
+<ul>
+<li><p>Revenez sur la page du moteur de recherche et tapez dans la case <span class="search"><span style="color: black;"><em>Search NCBI</em></span></span> : hemoglobin.</p>
+<ul>
+<li>Qu’affiche la page ?</li>
+</ul></li>
+<li><p>Cherchez maintenant plusieurs gènes de la famille <span class="math inline">\(\beta\)</span>.</p></li>
+</ul>
+<p>Pour cela, tapez dans la case <span class="search"><span style="color: black;"><em>Search NCBI databases</em></span></span> : les noms de 3-4 gènes parmi les 5 suivant : HBB, HBD, HBE, HBG1, HBG2.</p>
+<ul>
+<li><p>Comparez le nombre de résultats affichés par rapport à la recherche précédente, expliquez.</p>
+<ul>
+<li>Qu’obtenez-vous comme résultat principal dans la base de données <em>Nucleotide</em> ?</li>
+<li>Quels sont les identifiants contenus dans la page ?</li>
+</ul></li>
+</ul>
+<form>
+<fieldset>
+<label for="exampleTextarea" class="form-label mt-4">Vos réponses</label>
+<textarea class="form-control" id="exampleTextarea" rows="3" data-lt-tmp-id="lt-866928" spellcheck="false" data-gramm="false" style="line-height: 24px;"></textarea>
+</fieldset>
+</form>
+</section>
+<section id="exploration-dune-région-génomique" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="exploration-dune-région-génomique"><span class="header-section-number">1.4</span> Exploration d’une région génomique<a id="questions"></a></h2>
+<ul>
+<li>Ouvrez la fiche correspondant au code <strong>NG_000007.3</strong> trouvée précédemment.</li>
+<li>Consultez cette fiche en la déroulant à l’écran, repérez et notez les noms des champs d’annotation.</li>
+<li>Quelles réponses pouvez-vous apporter aux questions suivantes ?</li>
+<li>Et dans quels champs avez-vous trouvé ces réponses ?<br></li>
+</ul>
+<ol type="1">
+<li><p>Informations d’ordre générale à propos de cette séquence</p>
+<ul>
+<li>À quoi correspond cette séquence ?</li>
+<li>À quelle espèce correspond-elle ?</li>
+<li>Quel est le numéro d’identification dans la base de données RefSeq</li>
+<li>Quel est le numéro de version ?</li>
+<li>Quelle est la date de la dernière mise à jour du fichier ?</li>
+<li>Quelle est la date de la dernière mise à jour de cette séquence ?</li>
+</ul></li>
+<li><p>Bibliographie relative à cette séquence</p>
+<ul>
+<li>Combien d’articles sont référencés dans cette fiche ?</li>
+<li>Comment procéder pour accéder à la version pdf de cet(ces) article(s) original(aux) ?</li>
+</ul></li>
+<li><p>Analyse chromosomique</p>
+<ul>
+<li>Quelle est la longueur totale en bases de la région étudiée ?</li>
+<li>Par quel chromosome cette séquence est-elle portée ?</li>
+<li>Quelle est sa position dans la cartographie du chromosome en question ?</li>
+</ul></li>
+<li><p>Analyse génique</p>
+<ul>
+<li>Combien de gènes sont listés dans cette fiche ?</li>
+<li>Combien d’ARNm ?</li>
+<li>Pouvez-vous lire directement dans la page leurs tailles ?</li>
+</ul></li>
+</ol>
+<form>
+<fieldset>
+<label for="exampleTextarea" class="form-label mt-4">Vos réponses</label>
+<textarea class="form-control" id="exampleTextarea" rows="3" data-lt-tmp-id="lt-866928" spellcheck="false" data-gramm="false" style="line-height: 24px;"></textarea>
+</fieldset>
+</form>
+</section>
+<section id="exploration-de-la-région-génomique-du-gène-hbb" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="exploration-de-la-région-génomique-du-gène-hbb"><span class="header-section-number">1.5</span> Exploration de la région génomique du gène HBB</h2>
+<p>Pour obtenir les tailles, vous allez vous intéresser dans un premier temps au seul gène HBB.</p>
+<ul>
+<li>Localisez le gène HBB en utilisant les fonctions de recherche du navigateur (Ctrl-F/Ctrl-G ou Cmd-F/Cmd-G) pour trouver rapidement où se trouve les informations relatives au gène HBB.</li>
+<li>Pour vous aidez à répondre aux questions suivantes, un petit rappel de biologie moléculaire vous est présenté ci-dessous :</li>
+</ul>
+<table border="0" bgcolor="#FFFFFF" align="center">
+<tbody>
+<tr>
+<td align="center">
+<strong>Quelques rappels de biologie moléculaire</strong>
+</td>
+</tr>
+<tr>
+<td align="center" bgcolor="#FFFFFF">
+<a href="https://fr.wikipedia.org/wiki/G%C3%A8ne">La structure d’un gène</a> : <img src="504_images/genestruct.gif" alt="Gene" width="500" border="0">
+</td>
+</tr><tr>
+<td align="center" bgcolor="#FFFFFF">
+<a target="_blank" href="http://fr.wikipedia.org/wiki/%C3%89pissage">L’épissage alternatif d’un gène</a> : <img src="504_images/ARNm_Exons.jpg" alt="Exons" width="500" border="0" height="235">
+</td>
+</tr>
+<tr>
+<td align="center" bgcolor="#FFFFFF">
+<a target="_blank" href="http://fr.wikipedia.org/wiki/Acide_ribonucl%C3%A9ique_messager">La structure d’un ARN messager eucaryote mature</a> : <img src="504_images/CDS_UTRs.png" alt="CDS" width="660" border="0" height="124"><br>
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>Répondez aux questions suivantes:</p>
+<ul>
+<li>Quelle est la taille (en nombre de nucléotides) du gène HBB ?</li>
+<li>Combien d’exons compte-t-il ?</li>
+<li>Combien d’introns ?</li>
+<li>Quelle est la taille de l’ARNm ?</li>
+<li>Quelle est la taille de la CDS ?</li>
+<li>Délimitez les segments 5’UTR et 3’UTR.</li>
+<li>Quelles sont leurs tailles ?</li>
+<li>Retrouvez l’emplacement du codon d’initiation.</li>
+<li>Retrouvez l’emplacement du codon de terminaison.</li>
+<li>Retrouvez l’emplacement de la tataa box (motif : ataaa).</li>
+</ul></li>
+<li><p>Analyse de la <a href="https://fr.wikipedia.org/wiki/Prot%C3%A9ine" target="_blank">protéine</a> :</p>
+<ul>
+<li>Quelle sera la taille (en nombre d’acides aminés) de la protéine HBB ?</li>
+</ul></li>
+</ul>
+<form>
+<fieldset>
+<label for="exampleTextarea" class="form-label mt-4">Vos réponses</label>
+<textarea class="form-control" id="exampleTextarea" rows="3" data-lt-tmp-id="lt-866928" spellcheck="false" data-gramm="false" style="line-height: 24px;"></textarea>
+</fieldset>
+</form>
+</section>
+<section id="caractérisation-des-gènes-de-la-famille-des-beta-globines" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="caractérisation-des-gènes-de-la-famille-des-beta-globines"><span class="header-section-number">1.6</span> Caractérisation des gènes de la famille des <span class="math inline">\(\beta\)</span>-globines<a id="tableau"></a></h2>
+<p>Vous avez noté que les 5 gènes de la famille des <span class="math inline">\(\beta\)</span>-globines étaient décrits dans la séquence (HBB, HBD, HBE1, HBG1 et HBG2).</p>
+<ul>
+<li>Compte-tenu de tout ce que vous venez de réaliser sur le gène HBB, finissez de remplir le tableau ci-dessous :
+<p>
+</p><table class="table table-hover" summary="" bordercolor="#808080" border="1" bgcolor="#FFFFFF">
+<tbody>
+</tbody><thead>
+<tr>
+<th width="200">
+<br>
+</th>
+<th scope="col" style="text-align: center;" width="50">
+HBB
+</th>
+<th scope="col" style="text-align: center;" width="50">
+HBD
+</th>
+<th scope="col" style="text-align: center;" width="50">
+HBE1
+</th>
+<th scope="col" style="text-align: center;" width="50">
+HBG1
+</th>
+<th scope="col" style="text-align: center;" width="50">
+HBG2
+</th>
+</tr>
+</thead>
+<tbody><tr class="table-active">
+<td class="table-active" width="179">
+Taille du gène (pb)
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+</tr>
+<tr>
+<td width="179">
+Nombre d’exons
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+</tr>
+<tr class="table-active">
+<td width="179">
+Nombre d’introns
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+</tr>
+<tr>
+<td width="179">
+Taille de l’exon1 (pb)
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+</tr>
+<tr class="table-active">
+<td width="179" height="24">
+Taille de l’exon2 (pb)
+</td>
+<td height="24" contenteditable="true" style="text-align: right;">
+.
+</td>
+<td height="24" contenteditable="true" style="text-align: right;">
+.
+</td>
+<td height="24" contenteditable="true" style="text-align: right;">
+.
+</td>
+<td height="24" contenteditable="true" style="text-align: right;">
+.
+</td>
+<td height="24" contenteditable="true" style="text-align: right;">
+.
+</td>
+</tr>
+<tr>
+<td width="179">
+Taille de l’exon3 (pb)
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+</tr>
+<tr class="table-active">
+<td width="179" height="24">
+Taille de l’ARNm (nb)
+</td>
+<td height="24" contenteditable="true" style="text-align: right;">
+.
+</td>
+<td height="24" contenteditable="true" style="text-align: right;">
+.
+</td>
+<td height="24" contenteditable="true" style="text-align: right;">
+.
+</td>
+<td height="24" contenteditable="true" style="text-align: right;">
+.
+</td>
+<td height="24" contenteditable="true" style="text-align: right;">
+.
+</td>
+</tr>
+<tr>
+<td width="179" height="24">
+Taille de la CDS (nb)
+</td>
+<td height="24" contenteditable="true" style="text-align: right;">
+.
+</td>
+<td height="24" contenteditable="true" style="text-align: right;">
+.
+</td>
+<td height="24" contenteditable="true" style="text-align: right;">
+.
+</td>
+<td height="24" contenteditable="true" style="text-align: right;">
+.
+</td>
+<td height="24" contenteditable="true" style="text-align: right;">
+.
+</td>
+</tr>
+<tr class="table-active">
+<td width="179" height="24">
+Taille du 5’UTR (nb)
+</td>
+<td height="24" contenteditable="true" style="text-align: right;">
+.
+</td>
+<td height="24" contenteditable="true" style="text-align: right;">
+.
+</td>
+<td height="24" contenteditable="true" style="text-align: right;">
+.
+</td>
+<td height="24" contenteditable="true" style="text-align: right;">
+.
+</td>
+<td height="24" contenteditable="true" style="text-align: right;">
+.
+</td>
+</tr>
+<tr>
+<td width="179">
+Taille du 3’UTR (nb)
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+</tr>
+<tr class="table-active">
+<td width="179">
+Taille de la protéine (aa)
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+<td contenteditable="true" style="text-align: right;">
+.
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Que pouvez-vous maintenant conclure quant aux différents gènes de <span class="math inline">\(\beta\)</span>-globine ?</li>
+</ul></li>
+</ul>
+<form>
+<fieldset>
+<label for="exampleTextarea" class="form-label mt-4">Votre réponse</label>
+<textarea class="form-control" id="exampleTextarea" rows="3" data-lt-tmp-id="lt-866928" spellcheck="false" data-gramm="false" style="line-height: 24px;"></textarea>
+</fieldset>
+</form>
+</section>
+<section id="représentation-graphique-des-gènes-de-la-famille-des-beta-globines" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="représentation-graphique-des-gènes-de-la-famille-des-beta-globines"><span class="header-section-number">1.7</span> Représentation graphique des gènes de la famille des <span class="math inline">\(\beta\)</span>-globines</h2>
+<p>Représentation graphique de la séquence génomique <strong>NG_000007.3</strong> :</p>
+<ul>
+<li>Recherchez à nouveau la fiche de la séquence <strong>NG_000007.3</strong> sur le site du <em>NCBI</em></li>
+<li>Activez le bouton <font color="#3366cc" style="font-family:courier;"><u>Graphics</u></font> qui se trouve à droite du bouton <font color="#3366cc" style="font-family:courier;">FASTA</font></li>
+<li>Concentrez vos observations sur l’encadré <font color="gray" style="font-family:courier;">Genes</font></li>
+</ul>
+<p>Vérifiez notamment que les informations de longueurs de séquences qui vous sont données dans les encadrés contextuels (qui apparaissent lorsque vous déplacez la souris sur des objets : gène, ARNm, protéine….) sont conformes à ceux que vous avez déjà calculés.</p>
+<p>Vérifiez bien les longueurs pour chacun des 3 exons des 5 gènes caractérisés.</p>
+<ul>
+<li>En utilisant les liens portés par la fiche <b>NG_000007.3</b>, accédez à la base de données <strong>CCDS</strong>
+<ul>
+<li>Expliquez ce qu’est cette base de données ?</li>
+<li>Que contient-elle ?</li>
+<li>Comment est représenté l’apport de chaque exon dans la constitution de la CDS et de la protéine.</li>
+<li>Quel est son intérêt ?</li>
+</ul></li>
+</ul>
+</section>
+<section id="exportation-au-format-fasta-des-séquences-dintérêt" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="exportation-au-format-fasta-des-séquences-dintérêt"><span class="header-section-number">1.8</span> Exportation au format FASTA des séquences d’intérêt</h2>
+<p>Afin de pouvoir réaliser des opérations de comparaison de séquences par la suite, il est indispensable de pouvoir extraire les séquences à étudier dans un format standard d’échange des données. Il s’agit du format <a href="https://fr.wikipedia.org/wiki/FASTA_%28format_de_fichier%29" target="_blank">FASTA (ou Pearson)</a>.</p>
+<p>Pour ce faire, il faudra opérer selon la <a target="_blank" href="quarto_FASTA.html">procédure détaillée ici</a>.</p>
+<ul>
+<li>Créez un dossier <strong>Sequences</strong> dans votre espace (ex : <strong>BIO504 &gt; Sequences</strong>)</li>
+<li>Naviguez sur chacune des séquences des gènes, ARNm, CDS et protéines des différents membres de la famille <span class="math inline">\(\beta\)</span>-globine et sauvegardez chaque séquence dans ce dossier.</li>
+</ul>
+</section>
+<section id="sauvegarde-de-votre-travail" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="sauvegarde-de-votre-travail"><span class="header-section-number">1.9</span> Sauvegarde de votre travail<a id="sauvegarde"></a></h2>
+<p>Si vous avez travaillé directement sur la fiche en donnant vos réponses dans les zones de texte à votre disposition, vous pouvez conserver votre travail en sauvegardant la page au format <em>Page Web complète</em>.<br>
+Cette option dépend du navigateur utilisé et de votre OS.<br>
+Dans le cas de <em>Firefox</em>, choisissez le menu <em>Fichier &gt; Enregistrer la page sous…</em> avec le format <em>Page Web, complète</em> comme indiqué sur la figure ci-dessous (à adapter en fonction de votre système et de la langue) :</p>
+<p><img src="504_images/formatweb.png" alt="Format web" width="50%"></p>
+<ul>
+<li>Sauvegardez dans votre espace (ex : <strong>BIO504 &gt; Réponses</strong>)</li>
+</ul>
+</section>
+<section id="contrôle-continu-les-alpha-globines" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="contrôle-continu-les-alpha-globines"><span class="header-section-number">1.10</span> Contrôle continu : Les <span class="math inline">\(\alpha\)</span>-globines</h2>
+<p>Une autre fiche <em>NCBI</em> décrit les gènes de la famille des <span class="math inline">\(\alpha\)</span>-globines. Il s’agit de la séquence <strong>NG_000006.1</strong>. Vous caractériserez les gènes de la famille des <span class="math inline">\(\alpha\)</span>-globines en vous aidant de cette entrée <em>NCBI</em>.</p>
+<ul>
+<li><p>En vous basant sur la séquence décrite, vous traiterez la <a href="#questions">partie 1.4</a> et la <a href="#tableau">partie 1.6</a> dans le cas des gènes des <span class="math inline">\(\alpha\)</span>-globines</p></li>
+<li><p>Vous ajouterez une comparaison de séquence en vous basant sur les <a href="#dotlet">partie 1.2</a> et <a href="#alignement">partie 1.4</a> du TP2</p>
+<ul>
+<li>Que concluez-vous maintenant sur les gènes des <span class="math inline">\(\alpha\)</span>-globines ?</li>
+<li>Sur les gènes des hémoglobines ?
+</li>
+<li>Que concluez-vous sur les protéines d’<span class="math inline">\(\alpha\)</span>-globine ?
+</li>
+</ul></li>
+</ul>
+<li><p>Vous rendrez votre travail sous la forme d’un <strong>rapport de 4 pages maximum</strong> (numérotées de 1 à 4).</p></li>
+<li><p>Ce rapport sera à rendre au format <strong>PDF</strong> et déposé sur <strong>Moodle</strong> dans l’espace correspondant à <strong>votre groupe</strong> AVANT <strong>votre dernière séance</strong> de TP.</p></li>
+<li><p>Il devra contenir un titre cohérent, une <strong>introduction</strong> présentant l’objectif du travail, une partie <strong>matériels et méthodes</strong> décrivant les techniques que vous aurez utilisées, une partie <strong>résultats</strong> correspondant aux réponses aux différentes questions posées, et une <strong>conclusion</strong>. Les illustrations seront correctement titrées, numérotées et légendées (les principes de présentations vus en BIO501 s’appliquent également ici).</p></li>
+<li><p>Le fichier du rapport sera enfin nommé avec les noms des auteurs sous la forme <strong>BIO504_NOM1_NOM2.pdf</strong></p></li>
+<li><p>Le respect de toutes ces consignes sera évalué au même titre que le contenu du rapport.</p></li>
+
+<p xmlns:cc="http://creativecommons.org/ns#" class="text-body-secondary">
+Ces pages de <span property="cc:attributionName">Thierry Gautier</span> sont licenciées <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt=""></a>
+</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

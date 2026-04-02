@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Thierry Gautier">
+<meta name="dcterms.date" content="2025-10-12">
+
+<title>BIO504 - TP 2 – BIO504: TP de Bioinformatique</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-a26f3680889bc016604be2101547878f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">BIO504: TP de Bioinformatique</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./quarto_syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cours" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Cours</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-cours">    
+        <li>
+    <a class="dropdown-item" href="./pdf/25_BIO504_CM1.pdf">
+ <span class="dropdown-text">CM1: Les Bases de données</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./pdf/25_BIO504_CM2.pdf">
+ <span class="dropdown-text">CM2: Les alignements principes et usages</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./pdf/25_BIO504_CM3.pdf">
+ <span class="dropdown-text">CM3: Les Matrices de substitution</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./pdf/25_BIO504_CM4.pdf">
+ <span class="dropdown-text">CM4: PDB et Structures 3D</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./pdf/25_BIO504_CM5.pdf">
+ <span class="dropdown-text">CM5: Les Matrices et BLAST niveau 2</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-travaux-pratiques" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Travaux Pratiques</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-travaux-pratiques">    
+        <li>
+    <a class="dropdown-item" href="./quarto_bio504-TP1.html">
+ <span class="dropdown-text">TP1: Bases de données</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./quarto_bio504-TP2b.html">
+ <span class="dropdown-text">TP2: Comparaison et Alignements</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./quarto_bio504-TP3b.html">
+ <span class="dropdown-text">TP3: Consensus et Blast</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./quarto_bio504-TP4b.html">
+ <span class="dropdown-text">TP4: Modélisation 3D</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-docs-annexes" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Docs Annexes</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-docs-annexes">    
+        <li>
+    <a class="dropdown-item" href="./quarto_bio504-HB.html">
+ <span class="dropdown-text">A1: Les hémoglobines</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./quarto_FASTA.html">
+ <span class="dropdown-text">A2: Enregistrement Fasta</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./quarto_fichiers.html">
+ <span class="dropdown-text">A3: Les Séquences HB</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./504_images/base-r.jpg">
+ <span class="dropdown-text">A4: Aide pour le code R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./quarto_proteines.html">
+ <span class="dropdown-text">A5: Une famille de Protéines</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./quarto_videos.html">
+ <span class="dropdown-text">A6: Vidéos 2020 (Covid)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-réponses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Réponses</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-réponses">    
+        <li>
+    <a class="dropdown-item" href="./q_aide1.html">
+ <span class="dropdown-text">Réponses du TP1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./q_aide2.html">
+ <span class="dropdown-text">Réponses du TP2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./q_aide3.html">
+ <span class="dropdown-text">Réponses du TP3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./q_aide4.html">
+ <span class="dropdown-text">Réponses du TP4</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">Table des matières</h2>
+   
+  <ul>
+  <li><a href="#comparaison-et-alignements-de-séquences" id="toc-comparaison-et-alignements-de-séquences" class="nav-link active" data-scroll-target="#comparaison-et-alignements-de-séquences"><span class="header-section-number">1</span> Comparaison et alignements de séquences</a>
+  <ul class="collapse">
+  <li><a href="#objectifs-du-tp" id="toc-objectifs-du-tp" class="nav-link" data-scroll-target="#objectifs-du-tp"><span class="header-section-number">1.1</span> Objectifs du TP</a></li>
+  <li><a href="#comparaison-graphique-de-séquences-2-à-2" id="toc-comparaison-graphique-de-séquences-2-à-2" class="nav-link" data-scroll-target="#comparaison-graphique-de-séquences-2-à-2"><span class="header-section-number">1.2</span> Comparaison graphique de séquences 2 à 2</a>
+  <ul class="collapse">
+  <li><a href="#prise-en-main-du-logiciel-dotlet" id="toc-prise-en-main-du-logiciel-dotlet" class="nav-link" data-scroll-target="#prise-en-main-du-logiciel-dotlet"><span class="header-section-number">1.2.1</span> Prise en main du logiciel <em>Dotlet</em></a></li>
+  <li><a href="#analyse-des-séquences-des-hémoglobines-de-la-famille-beta" id="toc-analyse-des-séquences-des-hémoglobines-de-la-famille-beta" class="nav-link" data-scroll-target="#analyse-des-séquences-des-hémoglobines-de-la-famille-beta"><span class="header-section-number">1.2.2</span> Analyse des séquences des hémoglobines de la famille <span class="math inline">\(\beta\)</span></a></li>
+  </ul></li>
+  <li><a href="#comparaison-numérique-de-séquences" id="toc-comparaison-numérique-de-séquences" class="nav-link" data-scroll-target="#comparaison-numérique-de-séquences"><span class="header-section-number">1.3</span> Comparaison numérique de séquences</a>
+  <ul class="collapse">
+  <li><a href="#calculs-de-scores" id="toc-calculs-de-scores" class="nav-link" data-scroll-target="#calculs-de-scores"><span class="header-section-number">1.3.1</span> Calculs de scores</a></li>
+  <li><a href="#manipulation-des-matrices-dalignement" id="toc-manipulation-des-matrices-dalignement" class="nav-link" data-scroll-target="#manipulation-des-matrices-dalignement"><span class="header-section-number">1.3.2</span> Manipulation des matrices d’alignement</a></li>
+  </ul></li>
+  <li><a href="#alignement-des-hémoglobines-beta-avec-loutil-needle" id="toc-alignement-des-hémoglobines-beta-avec-loutil-needle" class="nav-link" data-scroll-target="#alignement-des-hémoglobines-beta-avec-loutil-needle"><span class="header-section-number">1.4</span> Alignement des hémoglobines <span class="math inline">\(\beta\)</span> avec l’outil <em>needle</em></a><a id="needle" class="nav-link" data-scroll-target="undefined"></a></li>
+  <li><a href="#effet-des-matrices" id="toc-effet-des-matrices" class="nav-link" data-scroll-target="#effet-des-matrices"><span class="header-section-number">1.5</span> Effet des matrices</a><a id="matrice" class="nav-link" data-scroll-target="undefined"></a></li>
+  <li><a href="#alignement-par-paires-de-séquences-nucléotidiques" id="toc-alignement-par-paires-de-séquences-nucléotidiques" class="nav-link" data-scroll-target="#alignement-par-paires-de-séquences-nucléotidiques"><span class="header-section-number">1.6</span> Alignement par paires de séquences nucléotidiques</a></li>
+  <li><a href="#sauvegarde-de-votre-travail" id="toc-sauvegarde-de-votre-travail" class="nav-link" data-scroll-target="#sauvegarde-de-votre-travail"><span class="header-section-number">1.7</span> Sauvegarde de votre travail</a></li>
+  <li><a href="#pour-aller-plus-loin-travail-personnel" id="toc-pour-aller-plus-loin-travail-personnel" class="nav-link" data-scroll-target="#pour-aller-plus-loin-travail-personnel"><span class="header-section-number">1.8</span> Pour aller plus loin (Travail personnel)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">BIO504 - TP 2</h1>
+<p class="subtitle lead">Comparaison et alignements de séquences</p>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Thierry Gautier </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            <a href="https://www.univ-grenoble-alpes.fr/">
+            Université Grenoble Alpes
+            </a>
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 12, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+<div>
+  <div class="abstract">
+    <div class="block-title">Synopsis :</div>
+    Comparer et aligner des séquences graphiquement ou par calcul de scores
+  </div>
+</div>
+
+
+</header>
+
+
+
+<meta name="description" content="bioinformatics practical L3 level, University Grenoble Alpes">
+<meta name="keywords" content="UGA,Bioinformatics,course,practical,Licence">
+<meta name="author" content="Thierry GAUTIER">
+<meta name="generator" content="Jupyter-Markdown-quarto">
+
+<style>
+a{
+ text-decoration-line:none;
+}
+</style>
+<section id="comparaison-et-alignements-de-séquences" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Comparaison et alignements de séquences</h1>
+<section id="objectifs-du-tp" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="objectifs-du-tp"><span class="header-section-number">1.1</span> Objectifs du TP</h2>
+<ol type="1">
+<li>Comparer deux à deux des séquences de gènes, d’ARNm, de CDS et de protéines</li>
+<li>Expérimentation avec l’outil graphique : <em>Dotlet</em> pour l’exploration visuelle de séquences</li>
+<li>Principes des calculs de score</li>
+<li>Savoir aligner des séquences manuellement</li>
+<li>Réalisation d’alignements par paires avec les outils de l’<em><a href="https://www.ebi.ac.uk/jdispatcher/">EMBL-EBI</a></em></li>
+</ol>
+<hr>
+<p>On utilisera de nouveau les gènes de la famille des hémoglobines comme modèle d’étude.</p>
+<p>Après une analyse détaillée de la séquence annotée <strong>NG_000007</strong> correspondant à la localisation chromosomique <em>11p15.5</em> pendant la première séance, vous avez dû trouver les séquences des gènes dans l’ordre 5’ - 3’ du brin codant :</p>
+<ul>
+<li>HBE1 (<span class="math inline">\(\epsilon\)</span> 1),</li>
+<li>HBG2 (<span class="math inline">\(\gamma\)</span> G),</li>
+<li>HBG1 (<span class="math inline">\(\gamma\)</span> A),</li>
+<li>HBD (<span class="math inline">\(\delta\)</span>),</li>
+<li>HBB (<span class="math inline">\(\beta\)</span>)</li>
+</ul>
+<p>Les 5 gènes codants forment la famille des <span class="math inline">\(\beta\)</span>-globines.</p>
+<p>Vous avez pu également voir que ces 5 gènes de la famille <span class="math inline">\(\beta\)</span> codent tous pour des ARNm de tailles différentes et qu’ils sont eux-mêmes de tailles différentes. Pourtant toutes les CDS et par conséquent les protéines produites sont de même taille. Cependant à ce stade, nous ne pouvons pas dire si les séquences des 5 ARNm et des 5 protéines sont identiques entre elles ou non. Cela va être un des objectifs des prochaines séances de cette série de travaux pratiques…</p>
+</section>
+<section id="comparaison-graphique-de-séquences-2-à-2" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="comparaison-graphique-de-séquences-2-à-2"><span class="header-section-number">1.2</span> Comparaison graphique de séquences 2 à 2</h2>
+<section id="prise-en-main-du-logiciel-dotlet" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="prise-en-main-du-logiciel-dotlet"><span class="header-section-number">1.2.1</span> Prise en main du logiciel <em>Dotlet</em></h3>
+<p>Nous utiliserons le logiciel en ligne développé par Marco Pagni et Thomas Junier au <em>SIB - Swiss Institute of Bioinformatics</em>. Il a été conçu pour permettre d’accéder en ligne à un logiciel de dotplot dans le cadre d’un cours de bioinformatique.</p>
+<ul>
+<li>Accédez au programme en ligne dans Firefox avec le lien suivant <em><a target="_blank" href="http://myhits.isb-sib.ch/cgi-bin/dotlet">dotlet</a></em></li>
+<li>Le logiciel était écrit en <a href="https://en.wikipedia.org/wiki/Java_(programming_language)" title="Java language" target="_blank">JAVA</a>, langage connu pour ses failles de sécurité. Une version <span class="math inline">\(\beta\)</span> a donc était développée en <a href="https://en.wikipedia.org/wiki/JavaScript" title="JavaScript language" target="_blank">JavaScript</a>. C’est celle que vous utiliserez car les navigateurs modernes limitent fortement l’accès à JAVA pour des raisons de <a href="https://en.wikipedia.org/wiki/Java_%28software_platform%29#Security" target="_blank">sécurité</a>, rendant la version initiale inopérante.</li>
+</ul>
+<p><img src="504_images/dotletjava.png" alt="JAVA" activation="" width="50%"></p>
+<ul>
+<li>Cliquez sur le lien <em>Dotlet JS</em>, la fenêtre ci-dessous doit apparaître dans un nouvel onglet</li>
+</ul>
+<p><img src="504_images/dotletJS.png" alt="JavaScript" activation="" width="50%"></p>
+<ul>
+<li>Découvrez l’interface en jouant avec les commandes de la fenêtre</li>
+<li>Indiquez le rôle de chaque bouton du bandeau supérieur</li>
+<li>Déterminez la fonction des 2 fenêtres</li>
+<li>Agissez sur les curseurs sous la fenêtre, que se passe-t-il ?</li>
+<li>Quelle est l’intérêt des lignes de séquences sous les fenêtres ?</li>
+</ul>
+<p><img src="504_images/dotletseq.png" alt="Sequence" activation="" width="65%"></p>
+<form>
+<fieldset>
+<label for="exampleTextarea" class="form-label mt-4">Vos réponses</label>
+<textarea class="form-control" id="exampleTextarea" rows="3" data-lt-tmp-id="lt-866928" spellcheck="false" data-gramm="false" style="line-height: 24px;"></textarea>
+</fieldset>
+</form>
+</section>
+<section id="analyse-des-séquences-des-hémoglobines-de-la-famille-beta" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="analyse-des-séquences-des-hémoglobines-de-la-famille-beta"><span class="header-section-number">1.2.2</span> Analyse des séquences des hémoglobines de la famille <span class="math inline">\(\beta\)</span></h3>
+<ul>
+<li>En utilisant les séquences <strong>HBB</strong> adéquates et vos connaissances sur l’organisation des séquences, utilisez <em>dotlet</em> pour visualiser <strong>les exons et les introns</strong></li>
+<li>Si vous ne l’avez pas fait, vous devrez aller chercher les séquences FASTA nécessaires. Pour cela reportez-vous à la <a href="quarto_FASTA.html" target="_blank">procédure indiquée</a> au <a href="quarto_bio504-TP1.html" target="_blank">TP1</a>
+<ul>
+<li>De quelle(s) séquence(s) avez-vous besoin ?</li>
+<li>Utilisez la technique de votre choix pour récupérer les formats FASTA des fichiers requis</li>
+<li>Comment apparaissent les exons ? Les introns ?</li>
+<li>dotlet affiche également les séquences en dessous de la fenêtre principale</li>
+</ul></li>
+</ul>
+<p><img src="504_images/dotletseq.png" alt="Sequences" activation="" width="65%"></p>
+<ul>
+<li><p>Utilisez les curseurs pour visualisez les jonctions exon/intron</p></li>
+<li><p>Choisissez maintenant les séquences <strong>HBB</strong> adéquates afin de pourvoir visualiser <strong>les 5’ et 3’ UTR</strong></p>
+<ul>
+<li>De quelle(s) séquence(s) avez-vous besoin ?</li>
+<li>Utilisez la technique de votre choix pour récupérer les formats FASTA des fichiers requis</li>
+<li>Utilisez les curseurs des séquences pour afficher la région terminale du 5’UTR, calculez sa taille</li>
+<li>Faites de même pour la région initiale du 3’UTR</li>
+<li>Retrouvez-vous les longueurs calculées lors du <a target="_blank" href="quarto_bio504-TP1.html">TP1</a> ?</li>
+</ul></li>
+<li><p>Réalisez le dotplot de <strong>HBB avec HBD</strong>, puis <strong>HBB avec HBE1</strong> en utilisant les <strong>séquences protéiques</strong>.</p>
+<ul>
+<li>Que vous faut-il pour classer ces alignements l’un par rapport à l’autre ?</li>
+</ul></li>
+</ul>
+<form>
+<fieldset>
+<label for="exampleTextarea" class="form-label mt-4">Vos réponses</label>
+<textarea class="form-control" id="exampleTextarea" rows="3" data-lt-tmp-id="lt-866928" spellcheck="false" data-gramm="false" style="line-height: 24px;"></textarea>
+</fieldset>
+</form>
+</section>
+</section>
+<section id="comparaison-numérique-de-séquences" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="comparaison-numérique-de-séquences"><span class="header-section-number">1.3</span> Comparaison numérique de séquences</h2>
+<section id="calculs-de-scores" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="calculs-de-scores"><span class="header-section-number">1.3.1</span> Calculs de scores</h3>
+<ul>
+<li>En vous basant sur la méthode vue en cours (voir <a href="pdf/25_BIO504_CM2.pdf">CM2</a>), calculez le score de l’<strong>alignement global</strong> des deux séquences nucléotidiques suivantes<br>
+(C’est un <strong>alignement arbitraire sans indel</strong>, il ne s’agit pas pour le moment du meilleur alignement entre ces deux séquences): <a id="score_dna"></a>
+<table>
+<tbody><tr>
+<td colspan="2" align="left" style="font-family:courier;">
+Séquence 1: <strong>ACACACTA</strong>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="left" style="font-family:courier;">
+Séquence 2: <strong>AGCACACA</strong>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+Calculer les scores de l’alignement en utilisant
+</td>
+</tr>
+<tr>
+<td>
+<ol type="1">
+<li>une matrice d’identité
+</li></ol></td>
+<td>
+<ol start="2" type="1">
+<li>une matrice 3 scores
+</li></ol></td>
+</tr>
+<tr>
+<td>
+<img src="504_images/MID.png" alt="Matrice d'identité" width="50%"><br>
+</td>
+<td>
+<img src="504_images/M3S.png" alt="Matrice 3 scores" width="50%"><br>
+</td>
+</tr>
+<tr>
+<td contenteditable="true">
+Score = ?
+</td>
+<td contenteditable="true">
+Score = ?
+</td>
+</tr>
+</tbody></table></li>
+
+
+<li>Répondez aux questions suivantes:
+<ul>
+<li>Quel est selon vous le meilleur score ?</li>
+<li>Donnez le score maximal pour chaque cas ?</li>
+</ul></li>
+</ul>
+<form>
+<fieldset>
+<label for="exampleTextarea" class="form-label mt-4">Vos réponses</label>
+<textarea class="form-control" id="exampleTextarea" rows="3" data-lt-tmp-id="lt-866928" spellcheck="false" data-gramm="false" style="line-height: 24px;"></textarea>
+</fieldset>
+</form>
+</section>
+<section id="manipulation-des-matrices-dalignement" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="manipulation-des-matrices-dalignement"><span class="header-section-number">1.3.2</span> Manipulation des matrices d’alignement</h3>
+<p>Vous trouverez à cette adresse une <a href="http://experiments.mostafa.io/needleman-wunsch/" target="_blank">démo interactive</a> pour l’<a href="https://fr.wikipedia.org/wiki/Algorithme_de_Needleman-Wunsch">alignement de Needleman-Wunsch</a></p>
+<ul>
+<li>Réglez la démo de manière à <strong>retrouver l’alignement</strong> que vous venez de calculer</li>
+<li>Modifiez les réglages pour <strong>retrouver l’alignement proposé</strong> en partie <a href="#score_dna">Calculs de scores</a></li>
+</ul>
+</section>
+</section>
+<section id="alignement-des-hémoglobines-beta-avec-loutil-needle" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="alignement-des-hémoglobines-beta-avec-loutil-needle"><span class="header-section-number">1.4</span> Alignement des hémoglobines <span class="math inline">\(\beta\)</span> avec l’outil <em>needle</em><a id="needle"></a></h2>
+<p>Les globines sont toutes impliquées dans le transport ou le stockage de l’oxygène. Ce sont des protéines homologues ainsi que les gènes qui les codent. Vous allez maintenant <strong>analyser la similarité des protéines</strong> constituant la famille <span class="math inline">\(\beta\)</span>.</p>
+<p>Vous allez commencer par <strong>comparer l’ensemble des séquences des hémoglobines</strong> 2 à 2 en utilisant un logiciel d’alignement par paires.<br>
+La question que nous nous posons étant de savoir à <strong>quel point les séquences à étudier sont semblables</strong>, vous allez utiliser un algorithme d’<strong>alignement global</strong> : l’<a href="https://medium.com/analytics-vidhya/sequence-alignment-and-the-needleman-wunsch-algorithm-710c7b1a23a4">algorithme de Needleman et Wunsch</a>.</p>
+<p>L’outil permettant d’appliquer cette méthode d’alignement est <a href="https://www.ebi.ac.uk/jdispatcher/psa/emboss_needle">EMBOSS needle</a> :</p>
+<p><img src="504_images/24needle.png" class="img-fluid"></p>
+<ul>
+<li><p>Commencez par comparer la globine <strong>HBB avec elle-même</strong> (Si vous ne les avez pas déjà à disposition, toutes les séquences nécessaires sont disponibles dans le fichier d’aide au <a href="q_aide2.html">TP2</a>).</p>
+<ul>
+<li>Que devez-vous faire pour obtenir l’alignement ?</li>
+</ul></li>
+<li><p>Cliquez sur le bouton <em>More options…</em></p></li>
+<li><p>Notez les valeurs des différents paramètres <strong>SANS</strong> les modifier</p></li>
+<li><p>Enfin cliquez sur le bouton Submit.</p>
+<ul>
+<li>Décrivez la composition de la page de résultats qui s’affiche</li>
+<li>Quel est le degré de similarité des séquences ?</li>
+<li>Quel est le score ?</li>
+<li>Quel est le pourcentage d’identité ? De similarité ?</li>
+<li>Quel est le pourcentage de gap ? Pourquoi un tel pourcentage ?
+<form>
+<fieldset>
+<label for="exampleTextarea" class="form-label mt-4">Vos réponses</label>
+<textarea class="form-control" id="exampleTextarea" rows="3" data-lt-tmp-id="lt-866928" spellcheck="false" data-gramm="false" style="line-height: 24px;"></textarea>
+</fieldset>
+</form></li>
+</ul></li>
+<li><p>Vous allez maintenant faire tourner le programme <strong>autant de fois que nécessaire</strong> en faisant les ajustements requis pour <strong>comparer HBB aux autres protéines de la famille <span class="math inline">\(\beta\)</span></strong>. Vous avez déjà les informations nécessaires pour remplir la colonne HBB versus HBB.</p></li>
+<li><p>Vous garderez les paramètres avec le réglage par défaut pour tous les alignements soit :<br>
+<em>matrice</em> BLOSUM62, <em>Gap Open</em> 10 et <em>Gap Extend</em> 0.5.</p></li>
+<li><p>Pour le vérifier, cliquez sur le bouton <em>More options…</em></p></li>
+<li><p>Remplissez le tableau ci-dessous :</p></li>
+</ul>
+<table class="table table-hover" bordercolor="#808080" border="1" bgcolor="#FFFFFF" style="width: 745px; height: 176px;">
+<tbody>
+<tr>
+<td style="background-color: #63b2de;">
+BLOSUM62<br>
+</td>
+<td colspan="5">
+</td>
+</tr>
+<tr>
+<th score="row">
+Protéine
+</th>
+<td style="text-align: center;">
+<strong>HBB&nbsp;</strong>
+</td>
+<td style="text-align: center;">
+<strong>HBD&nbsp;</strong>
+</td>
+<td style="text-align: center;">
+<strong>HBE1</strong>
+</td>
+<td style="text-align: center;">
+<strong>HBG1</strong>
+</td>
+<td style="text-align: center;">
+<strong>HBG2</strong>
+</td>
+</tr>
+<tr>
+<th score="row">
+Longueur
+</th>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+</tr>
+<tr>
+<th score="row">
+% identité
+</th>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+</tr>
+<tr>
+<th score="row">
+% Similarité
+</th>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+</tr>
+<tr>
+<th score="row">
+% Gap
+</th>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+</tr>
+<tr>
+<th score="row">
+Score
+</th>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Répondez ensuite aux questions suivantes
+<ul>
+<li>Que pouvez-vous déduire de ce tableau ?</li>
+<li>Classez les séquences protéiques par degré de similarité. Que remarquez-vous ?
+<form>
+<fieldset>
+<label for="exampleTextarea" class="form-label mt-4">Vos réponses</label>
+<textarea class="form-control" id="exampleTextarea" rows="3" data-lt-tmp-id="lt-866928" spellcheck="false" data-gramm="false" style="line-height: 24px;"></textarea>
+</fieldset>
+</form></li>
+</ul></li>
+</ul>
+</section>
+<section id="effet-des-matrices" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="effet-des-matrices"><span class="header-section-number">1.5</span> Effet des matrices<a id="matrice"></a></h2>
+<p>Aligner maintenant les globines de la famille <span class="math inline">\(\beta\)</span> en changeant la matrice pour une PAM250. Vous garderez les autres paramètres par défault.</p>
+<table class="table table-hover" bordercolor="#808080" border="1" bgcolor="#FFFFFF" style="width: 745px; height: 176px;">
+<tbody>
+<tr>
+<td style="background-color: #63b2de;">
+PAM250<br>
+</td>
+<td colspan="5">
+</td>
+</tr>
+<tr>
+<th score="row">
+Protéine
+</th>
+<td style="text-align: center;">
+<strong>HBB&nbsp;</strong>
+</td>
+<td style="text-align: center;">
+<strong>HBD&nbsp;</strong>
+</td>
+<td style="text-align: center;">
+<strong>HBE1</strong>
+</td>
+<td style="text-align: center;">
+<strong>HBG1</strong>
+</td>
+<td style="text-align: center;">
+<strong>HBG2</strong>
+</td>
+</tr>
+<tr>
+<th score="row">
+Longueur
+</th>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+</tr>
+<tr>
+<th score="row">
+% identité
+</th>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+</tr>
+<tr>
+<th score="row">
+% Similarité
+</th>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+</tr>
+<tr>
+<th score="row">
+% Gap
+</th>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+</tr>
+<tr>
+<th score="row">
+Score
+</th>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>Remplissez ce tableau comme précédemment (voir <em><a href="#needle">needle</a></em>) et répondez aux questions suivantes</p>
+<ul>
+<li>Comparez les deux tableaux. Expliquez les similitudes. Que signifient les différences ?</li>
+<li>Pouvez-vous les justifier ?
+<form>
+<fieldset>
+<label for="exampleTextarea" class="form-label mt-4">Vos réponses</label>
+<textarea class="form-control" id="exampleTextarea" rows="3" data-lt-tmp-id="lt-866928" spellcheck="false" data-gramm="false" style="line-height: 24px;"></textarea>
+</fieldset>
+</form></li>
+</ul></li>
+</ul>
+</section>
+<section id="alignement-par-paires-de-séquences-nucléotidiques" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="alignement-par-paires-de-séquences-nucléotidiques"><span class="header-section-number">1.6</span> Alignement par paires de séquences nucléotidiques</h2>
+<ul>
+<li><p>Regardez les paramètres des deux programmes (<em>needle</em> et <em>water</em>) pour les séquences nucléiques.</p>
+<ul>
+<li>Quelle est la matrice utilisée ?</li>
+<li>Recherchez cette matrice sur internet, à quelle matrice que vous connaissez se rapporte-t-elle ?
+<form>
+<fieldset>
+<label for="exampleTextarea" class="form-label mt-4">Vos réponses</label>
+<textarea class="form-control" id="exampleTextarea" rows="3" data-lt-tmp-id="lt-866928" spellcheck="false" data-gramm="false" style="line-height: 24px;"></textarea>
+</fieldset>
+</form></li>
+</ul></li>
+<li><p>Reportez dans le tableau les valeurs pour l’alignement de l’<strong>ARNm de HBB versus les autres ARNm</strong> de la famille <span class="math inline">\(\beta\)</span></p>
+<ul>
+<li>Quelles conclusions faites-vous ?</li>
+</ul></li>
+</ul>
+<table class="table table-hover" bordercolor="#808080" border="1" bgcolor="#FFFFFF" style="width: 745px; height: 176px;">
+<tbody>
+<tr>
+<td style="background-color: #63b2de;">
+DNAfull<br>
+</td>
+<td colspan="5">
+</td>
+</tr>
+<tr>
+<th score="row">
+Protéine
+</th>
+<td style="text-align: center;">
+<strong>HBB&nbsp;</strong>
+</td>
+<td style="text-align: center;">
+<strong>HBD&nbsp;</strong>
+</td>
+<td style="text-align: center;">
+<strong>HBE1</strong>
+</td>
+<td style="text-align: center;">
+<strong>HBG1</strong>
+</td>
+<td style="text-align: center;">
+<strong>HBG2</strong>
+</td>
+</tr>
+<tr>
+<th score="row">
+Longueur
+</th>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+</tr>
+<tr>
+<th score="row">
+% identité
+</th>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+</tr>
+<tr>
+<th score="row">
+% Similarité
+</th>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+</tr>
+<tr>
+<th score="row">
+% Gap
+</th>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+</tr>
+<tr>
+<th score="row">
+Score
+</th>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+<td contenteditable="true" style="text-align:right;">
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<form>
+<fieldset>
+<label for="exampleTextarea" class="form-label mt-4">Vos réponses</label>
+<textarea class="form-control" id="exampleTextarea" rows="3" data-lt-tmp-id="lt-866928" spellcheck="false" data-gramm="false" style="line-height: 24px;"></textarea>
+</fieldset>
+</form>
+</section>
+<section id="sauvegarde-de-votre-travail" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="sauvegarde-de-votre-travail"><span class="header-section-number">1.7</span> Sauvegarde de votre travail</h2>
+<p>Si vous avez travaillé directement sur la fiche en donnant vos réponses dans les zones de texte à votre disposition, vous pouvez conserver votre travail en sauvegardant la page au format <em>Page Web complète</em>.<br>
+Cette option dépend du navigateur utilisé et de votre OS.<br>
+Dans le cas de <em>Firefox</em>, choisissez le menu <em>Fichier &gt; Enregistrer la page sous…</em> avec le format <em>Page Web, complète</em> comme indiqué sur la figure ci-dessous (à adapter en fonction de votre système et de la langue) :</p>
+<p><img src="504_images/formatweb.png" alt="Format web" width="50%"></p>
+<ul>
+<li>Sauvegardez dans votre espace (ex : <strong>BIO504 &gt; Réponses</strong>)</li>
+</ul>
+</section>
+<section id="pour-aller-plus-loin-travail-personnel" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="pour-aller-plus-loin-travail-personnel"><span class="header-section-number">1.8</span> Pour aller plus loin (Travail personnel)</h2>
+<ul>
+<li>On vous propose l’alignement suivant :</li>
+</ul>
+<p><img alt="Match1" src="504_images/matchb24.png" style="margin-left: 40px;" width="25%"></p>
+<ul>
+<li>Calculez les scores selon les cas proposés ci-dessous :
+<ol type="1">
+<li>Combien d’identités et d’indels comptez-vous ?
+<table style="width: 30%; margin-left: 40px;" border="1">
+<tbody>
+<tr>
+<td contenteditable="true">
+Identités = ?<br> Indels = ?<br>
+</td>
+</tr>
+</tbody>
+</table></li>
+<li><a id="score_prot"></a>Calculez le score de cet alignement avec la matrice <a target="_blank" href="504_images/BLOSUM62.png">BLOSUM62</a> et une <strong>pénalité de gap de 5</strong> ?
+<table style="width: 30%; margin-left: 40px;" border="1">
+<tbody>
+<tr>
+<td contenteditable="true">
+Score = ?
+</td>
+</tr>
+</tbody>
+</table></li>
+<li>Calculez maintenant son score avec la matrice <a target="_blank" href="504_images/PAM250.png">PAM250</a> et la <strong>même pénalité</strong> ?
+<table style="width: 30%; margin-left: 40px;" border="1">
+<tbody>
+<tr>
+<td contenteditable="true">
+Score = ?
+</td>
+</tr>
+</tbody>
+</table></li>
+<li>Quelle matrice donne selon vous le meilleur score ?</li>
+</ol></li>
+<li>Alignez maintenant les globines de la <strong>famille <span class="math inline">\(\alpha\)</span></strong> avec l’outil <em>needle</em> et l’outil <em>water</em> en gardant les paramètres par défault.</li>
+<li>Créez et remplissez deux tableaux sur le modèle de ceux proposés pour conserver les résultats
+<ul>
+<li>Comparez les deux tableaux. Expliquez les similitudes. Que signifient les différences ?</li>
+<li>Pouvez-vous les justifier ?</li>
+</ul></li>
+</ul>
+<p xmlns:cc="http://creativecommons.org/ns#" class="text-body-secondary">
+Ces pages de <span property="cc:attributionName">Thierry Gautier</span> sont licenciées <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-SA 4.0&nbsp;<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt=""></a>
+</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
