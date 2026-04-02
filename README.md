@@ -1,13 +1,10 @@
 # UGA_Mod
-Source code of the website for the Bc.S. BIO504 course (3rd year) available at the University Grenoble Alpes
+Source code of the website for the Bc.S. BIO504 course (3rd year) available at the University Grenoble Alpes\
 (Cours en Français)
 
-Ces pages ont été créées par Thierry Gautier sous [Jupyter](https://jupyter.org/) avec les langages [Markdown](https://daringfireball.net/projects/markdown/), [Python](https://python.org), [HTML](https://html.spec.whatwg.org/multipage/), [YAML](https://yaml.org/) et [CSS](https://www.w3.org/TR/css/).
-Le rendu graphique est publié avec [quarto](https://quarto.org/) à partir des modèles [Bootswatch](https://bootswatch.com/yeti/) et du thème [Yeti](https://bootswatch.com/yeti/).
-
-Elles sont licenciées [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)
-
-[-](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)[-](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)[-](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)[-](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)
+<p xmlns:cc="http://creativecommons.org/ns#">
+Ces pages ont été créées par <span property="cc:attributionName">Thierry Gautier</span> sous <a href="https://jupyter.org" target="_blank">Jupyter</a> avec les langages <a href="https://daringfireball.net/projects/markdown/" target="_blank">Markdown</a>, <a href="https://python.org" target="_blank">Python</a>, <a href="https://html.spec.whatwg.org/multipage/" target="_blank">HTML</a>, <a href="https://yaml.org" target="_blank">YAML</a> et <a href="https://www.w3.org/TR/css/">CSS</a>.<br> Le rendu graphique est publié avec <a href="https://quarto.org" target="_blank">quarto</a> à partir des modèles <a href="https://bootswatch.com/yeti/" target="_blank">Bootswatch</a> et du thème <a href="https://bootswatch.com/yeti/" target="_blank">Yeti</a>.<br> Elles sont licenciées <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-SA 4.0&nbsp;<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt=""></a>
+</p>
 
 # Installation
 
