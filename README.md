@@ -2,11 +2,12 @@
 Source code of the website for the Bc.S. BIO504 course (3rd year) available at the University Grenoble Alpes
 (Cours en Français)
 
-Ces pages ont été créées par Thierry Gautier sous [Jupyter](https://jupyter.org/) avec les langages [Markdown](https://daringfireball.net/projects/markdown/), [Python](https://html.spec.whatwg.org/multipage/), [HTML](https://html.spec.whatwg.org/multipage/), [YAML](https://yaml.org/) et [CSS](https://www.w3.org/TR/css/).
+Ces pages ont été créées par Thierry Gautier sous [Jupyter](https://jupyter.org/) avec les langages [Markdown](https://daringfireball.net/projects/markdown/), [Python](https://python.org), [HTML](https://html.spec.whatwg.org/multipage/), [YAML](https://yaml.org/) et [CSS](https://www.w3.org/TR/css/).
 Le rendu graphique est publié avec [quarto](https://quarto.org/) à partir des modèles [Bootswatch](https://bootswatch.com/yeti/) et du thème [Yeti](https://bootswatch.com/yeti/).
+
 Elles sont licenciées [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)
 
-![-](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)![-](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)![-](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)![-](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)
+[-](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)[-](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)[-](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)[-](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)
 
 # Installation
 
@@ -35,6 +36,6 @@ rm -Rf *
 ```
 
 # Licence
-TG©2025
-UGA
+TG©2025\
+UGA\
 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)
