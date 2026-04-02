@@ -3,6 +3,11 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+# Hiddent file created by MacOS and mercury/Git
+.DS_Store
+.hgignore
+.gitignore
+
 # C extensions
 *.so
 
