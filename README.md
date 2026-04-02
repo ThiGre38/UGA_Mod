@@ -15,7 +15,7 @@ Ces pages ont été créées par <span property="cc:attributionName">Thierry Gau
 ```
 cd ~/Documents
 git clone https://github.com/ThiGre38/UGA_Mod.git
-cd UGA_Mod
+cd UGA_Mod/BIO504_WebSite
 ```
 
 3. Ouvrez le fichier `index.html`
