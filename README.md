@@ -35,7 +35,7 @@ Le contenu du dossier UGA_Mod peut être utilisé localement ou placé en totali
 cd ~/Documents/UGA_mod # pour être certain de se placer dans le bon dossier
 rm -Rf *
 cd ..
-rm UGA_mod
+rm -Rf UGA_mod
 ```
 
 # Licence
